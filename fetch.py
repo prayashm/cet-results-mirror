@@ -68,9 +68,9 @@ if batch == 2018:
     semcodes = [485, 526]
 
     start = 1401106000
-    end = 14011067000
+    end = 1401106624
     le_start = 1521106000
-    le_end = 1521106200
+    le_end = 1521106001
 
 elif batch == 2017:
     #2017 batch

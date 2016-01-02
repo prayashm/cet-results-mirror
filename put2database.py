@@ -21,12 +21,12 @@ class Semester(BaseModel):
     num = IntegerField() # from 1 to 8
 
 class Student(BaseModel):
-    regno = IntegerField(unique=True)
+    regno = CharField(unique=True)
     name = CharField()
     branch = ForeignKeyField(Branch, to_field='code', related_name='students')
     batch = IntegerField()
-    cgpa = FloatField()
-    course = CharField()
+    cgpa = FloatField(null=True)
+    course = CharField(choices = (('reg','regular'),('le','lateral-entry')))
 
     class Meta:
         order_by = ('regno',)
@@ -35,6 +35,7 @@ class Exam(BaseModel):
     student = ForeignKeyField(Student, to_field='regno', related_name='exams')
     semester = ForeignKeyField(Semester, to_field='code', related_name='exams')
     sgpa = FloatField()
+    credits = IntegerField()
 
 class Score(BaseModel):
     student = ForeignKeyField(Student, to_field='regno', related_name='scores', on_delete='cascade')
@@ -47,16 +48,8 @@ def addTo(table, data_source):
     with db.atomic():
         if table == "Branch":
            Branch.insert_many(data_source).execute()
-        elif table == "Subject":
-            Subject.insert_many(data_source).execute()
         elif table == "Semester":
             Semester.insert_many(data_source).execute()
-        elif table == "Student":
-            for i in range(0, len(data_source), 1000):
-                Student.insert_many(data_source[i:i+1000]).execute()
-        elif table == "Score":
-            for i in range(0, len(data_source), 1000):
-                Score.insert_many(data_source[i:i+1000]).execute()
     print "Done inserting"
 
 
