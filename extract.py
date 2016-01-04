@@ -1,6 +1,6 @@
 import sys,re,glob,numpy
 from bs4 import BeautifulSoup
-from put2database import *
+from models import *
 
 data = [
     {2018: [485, 526]},
