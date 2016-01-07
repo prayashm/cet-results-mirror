@@ -16,20 +16,30 @@ def getStudentByRegNo(regno):
 	student = Student.get(Student.regno == regno)
 	semesters = []
 	for exam in student.exams:
-		semesters.append({'sem':exam.semester.num,'sgpa':exam.sgpa, 'path':'raw/%d/%d/%s.html' % (student.batch, exam.semester.code, student.regno), 'credits':exam.credits})
-	print semesters
+		subjects = []
+		for score in Score.select().where(Score.student == student, Score.semester == exam.semester):
+			subjects.append({'name': score.subject.name.title(), 'code': score.subject.code, 'credits': score.subject.credits, 'grade': score.grade})
+		
+		semesters.append({'sem':exam.semester.num,'sgpa':exam.sgpa, 'path':'raw/%d/%d/%s.html' % (student.batch, exam.semester.code, student.regno), 'credits':exam.credits, 'subjects': subjects})
+	# print semesters
 	return jsonify(name=student.name.title(), regno=student.regno, branch=student.branch.name.title(), batch=student.batch, semesters=semesters)
 
 @app.route("/<partial_name>")
 def getStudentByName(partial_name):
-	#if partial_name[-1] != '*':
-	#	partial_name = partial_name+'*'
-	#partial_name = partial_name.replace('*','%%')
 	students = []
-	records = Student.raw("SELECT * FROM student WHERE name LIKE '%%"+partial_name+"%%' ORDER BY regno DESC")
+	records = Student.raw("SELECT * FROM student WHERE name LIKE '%%"+partial_name+"%%' AND is_visible = TRUE ORDER BY regno DESC")
 	for student in records:
-		students.append({'name':student.name,'regno':student.regno,'batch':student.batch, 'branch':student.branch.code })
+		students.append({'name':student.name.title(),'regno':student.regno,'batch':student.batch, 'branch':student.branch.code })
 	return jsonify(students=students)
 
+@app.route("/hide/<int:regno>")
+def hideStudent(regno):
+	student = Student.get(Student.regno == regno)
+	student.is_visible = False
+	if student.save() == 1:
+		return jsonify(message="Success in hiding %s - %s" % (student.regno,student.name.title()))
+	else:
+		return jsonify(message="Failed in hiding %s. It's already hidden from search by name" % student.regno)
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5100,debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)

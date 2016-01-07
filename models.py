@@ -27,6 +27,7 @@ class Student(BaseModel):
     batch = IntegerField()
     cgpa = FloatField(null=True)
     course = CharField(choices = (('reg','regular'),('le','lateral-entry')))
+    is_visible = BooleanField(default=True)
 
     class Meta:
         order_by = ('regno',)
@@ -42,7 +43,7 @@ class Score(BaseModel):
     subject = ForeignKeyField(Subject, to_field='code', related_name='student_scores', on_delete='cascade')
     grade = FixedCharField(max_length=1)
     semester = ForeignKeyField(Semester, to_field='code',related_name='scores', on_delete='cascade')
-    recheckGrade = None
+    # updatedGrade = FixedCharField(max_length=1,null=True)
 
 def addTo(table, data_source):
     with db.atomic():
