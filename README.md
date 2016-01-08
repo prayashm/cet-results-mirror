@@ -17,6 +17,6 @@ Just enter the registration number and hit enter. (Ignore the autocomplete box b
 ###Search by Name:
 Start typing the name, and choose from one of the suggestions that come along.
 
-Made by:
-[Prayash Mohapatra](http://prayashm.com)
+Made by:..
+[Prayash Mohapatra](http://prayashm.com)..
 [Sayed Afif](http://twitter.com/iamafif)
