@@ -1,6 +1,12 @@
+import os
 from peewee import *
 
-db = MySQLDatabase('results_db', user='root', passwd='trymiracle')
+DB_HOST = os.environ.get('OPENSHIFT_MYSQL_DB_HOST','localhost')
+DB_PORT = os.environ.get('OPENSHIFT_MYSQL_DB_POORT', 3306)
+DB_USER = os.environ.get('OPENSHIFT_MYSQL_DB_USERNAME', 'root')
+DB_PASS = os.environ.get('OPENSHIFT_MYSQL_DB_PASSWORD', 'trymiracle')
+
+db = MySQLDatabase('results_db', host=DB_HOST, port=DB_PORT, user=DB_USER, passwd=DB_PASS)
 
 class BaseModel(Model):
     class Meta:

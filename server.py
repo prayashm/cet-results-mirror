@@ -1,6 +1,7 @@
 from models import *
 from flask import Flask, jsonify, request, send_from_directory
 app = Flask(__name__, static_url_path='')
+app.config.from_pyfile('app.cfg')
 
 @app.route("/")
 def root():
@@ -41,5 +42,9 @@ def hideStudent(regno):
 	else:
 		return jsonify(message="Failed in hiding %s. It's already hidden from search by name" % student.regno)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5000,debug=True)
+@app.route("/test")
+def test():
+    return "<strong>It's Alive!</strong>"
+
+if __name__ == '__main__':
+    app.run()
