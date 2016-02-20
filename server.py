@@ -28,7 +28,7 @@ def getStudentByRegNo(regno):
 @app.route("/<partial_name>")
 def getStudentByName(partial_name):
     students = []
-    records = Student.raw("SELECT * FROM student WHERE name LIKE '%%"+partial_name+"%%' AND is_visible = TRUE ORDER BY regno RESC")
+    records = Student.raw("SELECT * FROM student WHERE name LIKE '%%"+partial_name+"%%' AND is_visible = TRUE ORDER BY regno DESC")
     for student in records:
         students.append({'name':student.name.title(),'regno':student.regno,'batch':student.batch, 'branch':student.branch.code })
     return jsonify(students=students)
