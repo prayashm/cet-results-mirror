@@ -1,0 +1,2 @@
+#!/bin/bash
+date >> ${OPENSHIFTT_LOG_DIR}/ticktock.log
