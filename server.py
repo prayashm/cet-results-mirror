@@ -14,6 +14,7 @@ def send_raw(path):
 
 @app.route("/<int:regno>")
 def getStudentByRegNo(regno):
+    db.connect()
     student = Student.get(Student.regno == regno)
     semesters = []
     for exam in student.exams:
@@ -23,20 +24,25 @@ def getStudentByRegNo(regno):
         
         semesters.append({'sem':exam.semester.num,'sgpa':exam.sgpa, 'path':'raw/%d/%d/%s.html' % (student.batch, exam.semester.code, student.regno), 'credits':exam.credits, 'subjects': subjects})
     # print semesters
+    db.disconnect()
     return jsonify(name=student.name.title(), regno=student.regno, branch=student.branch.name.title(), batch=student.batch, semesters=semesters)
 
 @app.route("/<partial_name>")
 def getStudentByName(partial_name):
+    db.connect()
     students = []
     records = Student.raw("SELECT * FROM student WHERE name LIKE '%%"+partial_name+"%%' AND is_visible = TRUE ORDER BY regno DESC")
     for student in records:
         students.append({'name':student.name.title(),'regno':student.regno,'batch':student.batch, 'branch':student.branch.code })
+    db.disconnect()
     return jsonify(students=students)
 
 @app.route("/hide/<int:regno>")
 def hideStudent(regno):
+    db.connect()
     student = Student.get(Student.regno == regno)
     student.is_visible = False
+    db.disconnect()
     if student.save() == 1:
         return jsonify(message="Success in hiding %s - %s" % (student.regno,student.name.title()))
     else:
