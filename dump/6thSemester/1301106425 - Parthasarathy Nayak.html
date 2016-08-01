@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+
+</title><link href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" rel="stylesheet" /><link type="text/css" rel="stylesheet" href="../../css/v4_global.css" />
+    <style type="text/css">
+        .auto-style1 {
+            color: #CC0000;
+        }
+    </style>
+<link class="Telerik_stylesheet" rel="stylesheet" type="text/css" href="/WebResource.axd?d=Xl3KanCjbZYyBFSAb166XEsRv4iWM-dB_UkUHorCXaqiwOMIJvc0l1CR1UR1S74K0&amp;t=634745905060000000" /><link class="Telerik_stylesheet" rel="stylesheet" type="text/css" href="/WebResource.axd?d=Xl3KanCjbZYyBFSAb166XEsRv4iWM-dB_UkUHorCXao81u6CGDQJOYYogyB-LIIGL2YCBj5kdH3yNulAhvsIzg2&amp;t=634745905060000000" /><link class="Telerik_stylesheet" rel="stylesheet" type="text/css" href="/WebResource.axd?d=Xl3KanCjbZYyBFSAb166XEsRv4iWM-dB_UkUHorCXapvw3CHkJGIYneiH_jPOYvlwCgReBvSPK1P7vJQ9nwGDQ2&amp;t=634745905060000000" /><link class="Telerik_stylesheet" rel="stylesheet" type="text/css" href="/WebResource.axd?d=Xl3KanCjbZYyBFSAb166XEsRv4iWM-dB_UkUHorCXap4Gkj5cCxyaY8Rsu7HXgj97_UtJ8wgYDgY-YUhrCZtVA6hxuZ4zgj99F5kaWRch2A1&amp;t=634745905060000000" /></head>
+<body>
+    <form id="form1" onsubmit="javascript:return WebForm_OnSubmit();" action="StudentResult.aspx" method="post" name="form1">
+<div>
+<input type="hidden" value="" id="__EVENTTARGET" name="__EVENTTARGET" />
+<input type="hidden" value="" id="__EVENTARGUMENT" name="__EVENTARGUMENT" />
+<input type="hidden" value="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" id="__VIEWSTATE" name="__VIEWSTATE" />
+</div>
+
+<script type="text/javascript">
+//&lt;![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]&gt;
+</script>
+
+
+<script type="text/javascript" src="/WebResource.axd?d=nAzR0AYuW-vD6VvqXvF5ow2&amp;t=635647867464935969"></script>
+
+
+<script type="text/javascript" src="/ScriptResource.axd?d=5ahEXONp_0kqS5FZ6qhaSr3o1YcGCAKDfhX1N61SJAhbgomcH_uJfaSlp3s2ZSuLr8_WJXLEBHOKqpqvJigRqQ2&amp;t=ffffffff89c0ad18"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=KvcHKlfjWGxDkk_X2F-4J7XRcAAuurA-rkXsy_0NqEe7a-MR4rdMiYz51grhKLZw1uJtLPwIBU4BcY6bgPSQgUVnUwVekYT0ECb9IgvdK5U1&amp;t=16ab2387"></script>
+<script type="text/javascript">
+//&lt;![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]&gt;
+</script>
+
+<script type="text/javascript" src="/ScriptResource.axd?d=KvcHKlfjWGxDkk_X2F-4J7XRcAAuurA-rkXsy_0NqEe7a-MR4rdMiYz51grhKLZwAKPoawDTCCE6z5CCZ4fhwzcU4C6jzf6H_3azB_t2Zn2q_YirY_5pkW9odXu5YE-Q0&amp;t=16ab2387"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYpmgNHABtbaVmbxRKWqa5W30&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYrwhHykL9UePVZgg-ARmDvkrBN3spWAfM46MLR_JAQR5A2&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYp2lMUczWLn4_g0aQkHGZKqqSc2ccyqUIrWpe6dW272YQ2&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYpicUDI7lrw4HryJLlqFRPN1fVGU5e4GrSkv1x2HCtFWioKVE5CRt_T-vgYqqJ7BjU1&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSlkaC3ZLUE-EEakZznVF7tRr3gKCkpMDcI4W-hwxnkw6YuewKRU2_Bi5_galEd4EnAA2&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSlkaC3ZLUE-EEakZznVF7tRpE7AxvZ5KsMwBf3BV9GHU2zQFzHkHVcd_sbZ4vc0b3qX2ZLP3FX8oX7HQkvT33aTk1&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYo0NFOa4oYKyAhOCyi4-EbfzHZ7WUDK3MkmlJHn7XdOhcnIvP9lQjBoLg8Y5rOW56k1&amp;t=605d1028"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=w9jt9PgxcuUQcEYrlTBSltNtZgI7eQ3rNppS-H5OEYo0NFOa4oYKyAhOCyi4-EbfKVRcXkANtH3nrD-GoBKf9w2&amp;t=605d1028"></script>
+<script type="text/javascript">
+//&lt;![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" &amp;&amp; ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]&gt;
+</script>
+
+<div>
+
+	<input type="hidden" value="" id="__VIEWSTATEENCRYPTED" name="__VIEWSTATEENCRYPTED" />
+	<input type="hidden" value="F28QWKPmyDH1u/grVeFQYa+sUrR41cMNzMA1CmC1+xP84Av9YcRVPAJQd0WRTIYyITBROmTcGeLemo/60OX4qg==" id="__EVENTVALIDATION" name="__EVENTVALIDATION" />
+</div>
+        <div align="center" style="background-color: white">
+            <script type="text/javascript">
+//&lt;![CDATA[
+Sys.WebForms.PageRequestManager._initialize('hjhj', 'form1', [], [], [], 90, '');
+//]]&gt;
+</script>
+
+            <br />
+            <div style="width: 1000px">
+                <table style="width: 100%" class="pure-table pure-table-bordered">
+                    <thead>
+                        <tr align="center">
+
+                            <th>BIJU PATNAIK UNIVERSITY OF TECHNOLOGY, ODISHA
+
+                            </th>
+                        </tr>
+
+                    </thead>
+                </table>
+
+                <div align="center">
+
+
+                    <table class="pure-table pure-table-bordered" id="tblRollNoDetail">
+	<tbody><tr align="center">
+		<td style="color: red;" colspan="2"><strong> REGULAR/BACK RESULT</strong></td>
+	</tr>
+	<tr align="left">
+		<td><strong>Enter Reg No.</strong></td>
+		<td>
+                                <input type="text" style="height:24px;width:300px;" placeholder="Enter Registration No" id="txtRegNo" value="1301106425" name="txtRegNo" />
+
+                                <span style="color:Red;visibility:hidden;" id="RequiredFieldValidator1">Enter Valid registration No.</span>
+
+                            </td>
+	</tr>
+	<tr align="left">
+		<td align="left">
+                                <strong>D.O.B:</strong>
+                            </td>
+		<td>
+
+                                <div style="display:-moz-inline-stack;width:160px;height:20px;" class="RadPicker RadPicker_Default" id="dpStudentdob_wrapper">
+			<!-- 2012.2.607.40 --><input type="text" title="" value="2015-01-01" class="rdfd_" name="dpStudentdob" id="dpStudentdob" style="visibility:hidden;display:block;float:right;margin:0 0 -1px -1px;width:1px;height:1px;overflow:hidden;border:0;padding:0;" /><table cellspacing="0" style="width:160px;" class="rcTable rcSingle">
+				<tbody><tr>
+					<td style="width:100%;" class="rcInputCell"><span style="display:block;width:100%;" class="riSingle RadInput RadInput_Default" id="dpStudentdob_dateInput_wrapper"><input type="text" value="1/1/2015" class="riTextBox riEnabled" name="dpStudentdob$dateInput" id="dpStudentdob_dateInput" /><input type="hidden" name="dpStudentdob_dateInput_ClientState" id="dpStudentdob_dateInput_ClientState" autocomplete="off" value="{&quot;enabled&quot;:true,&quot;emptyMessage&quot;:&quot;&quot;,&quot;validationText&quot;:&quot;2015-01-01-00-00-00&quot;,&quot;valueAsString&quot;:&quot;2015-01-01-00-00-00&quot;,&quot;minDateStr&quot;:&quot;01/01/1960&quot;,&quot;maxDateStr&quot;:&quot;01/01/2015&quot;}" /></span></td><td><a class="rcCalPopup" id="dpStudentdob_popupButton" href="#" title="Open the calendar popup.">Open the calendar popup.</a><div style="display: none" id="dpStudentdob_calendar_wrapper"><table border="0" cellspacing="0" class="RadCalendar RadCalendar_Default" summary="Calendar" id="dpStudentdob_calendar">
+						<thead>
+							<tr>
+								<td class="rcTitlebar"><table border="0" cellspacing="0" summary="title and navigation">
+									<tbody><tr>
+										<td><a href="#" title="&lt;&lt;" class="rcFastPrev" id="dpStudentdob_calendar_FNP">&lt;&lt;</a></td><td><a href="#" title="&lt;" class="rcPrev" id="dpStudentdob_calendar_NP">&lt;</a></td><td class="rcTitle" id="dpStudentdob_calendar_Title">January 2015</td><td><a href="#" title="&gt;" class="rcNext" id="dpStudentdob_calendar_NN">&gt;</a></td><td><a href="#" title="&gt;&gt;" class="rcFastNext" id="dpStudentdob_calendar_FNN">&gt;&gt;</a></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</thead><tbody>
+	<tr>
+		<td class="rcMain"><table border="0" cellspacing="0" summary="January 2015" class="rcMainTable" id="dpStudentdob_calendar_Top">
+	<thead>
+		<tr class="rcWeek">
+			<th class="rcViewSel"> </th><th scope="col" abbr="Sun" title="Sunday" id="dpStudentdob_calendar_Top_cs_1">S</th><th scope="col" abbr="Mon" title="Monday" id="dpStudentdob_calendar_Top_cs_2">M</th><th scope="col" abbr="Tue" title="Tuesday" id="dpStudentdob_calendar_Top_cs_3">T</th><th scope="col" abbr="Wed" title="Wednesday" id="dpStudentdob_calendar_Top_cs_4">W</th><th scope="col" abbr="Thu" title="Thursday" id="dpStudentdob_calendar_Top_cs_5">T</th><th scope="col" abbr="Fri" title="Friday" id="dpStudentdob_calendar_Top_cs_6">F</th><th scope="col" abbr="Sat" title="Saturday" id="dpStudentdob_calendar_Top_cs_7">S</th>
+		</tr>
+	</thead><tbody>
+		<tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_1">1</th><td title="Sunday, December 28, 2014" class="rcOtherMonth"><a href="#">28</a></td><td title="Monday, December 29, 2014" class="rcOtherMonth"><a href="#">29</a></td><td title="Tuesday, December 30, 2014" class="rcOtherMonth"><a href="#">30</a></td><td title="Wednesday, December 31, 2014" class="rcOtherMonth"><a href="#">31</a></td><td title="Thursday, January 01, 2015"><a href="#">1</a></td><td class="rcOutOfRange"><span>2</span></td><td class="rcOutOfRange"><span>3</span></td>
+		</tr><tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_2">2</th><td class="rcOutOfRange"><span>4</span></td><td class="rcOutOfRange"><span>5</span></td><td class="rcOutOfRange"><span>6</span></td><td class="rcOutOfRange"><span>7</span></td><td class="rcOutOfRange"><span>8</span></td><td class="rcOutOfRange"><span>9</span></td><td class="rcOutOfRange"><span>10</span></td>
+		</tr><tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_3">3</th><td class="rcOutOfRange"><span>11</span></td><td class="rcOutOfRange"><span>12</span></td><td class="rcOutOfRange"><span>13</span></td><td class="rcOutOfRange"><span>14</span></td><td class="rcOutOfRange"><span>15</span></td><td class="rcOutOfRange"><span>16</span></td><td class="rcOutOfRange"><span>17</span></td>
+		</tr><tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_4">4</th><td class="rcOutOfRange"><span>18</span></td><td class="rcOutOfRange"><span>19</span></td><td class="rcOutOfRange"><span>20</span></td><td class="rcOutOfRange"><span>21</span></td><td class="rcOutOfRange"><span>22</span></td><td class="rcOutOfRange"><span>23</span></td><td class="rcOutOfRange"><span>24</span></td>
+		</tr><tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_5">5</th><td class="rcOutOfRange"><span>25</span></td><td class="rcOutOfRange"><span>26</span></td><td class="rcOutOfRange"><span>27</span></td><td class="rcOutOfRange"><span>28</span></td><td class="rcOutOfRange"><span>29</span></td><td class="rcOutOfRange"><span>30</span></td><td class="rcOutOfRange"><span>31</span></td>
+		</tr><tr class="rcRow">
+			<th scope="row" id="dpStudentdob_calendar_Top_rs_6">6</th><td class="rcOutOfRange"><span>1</span></td><td class="rcOutOfRange"><span>2</span></td><td class="rcOutOfRange"><span>3</span></td><td class="rcOutOfRange"><span>4</span></td><td class="rcOutOfRange"><span>5</span></td><td class="rcOutOfRange"><span>6</span></td><td class="rcOutOfRange"><span>7</span></td>
+		</tr>
+	</tbody>
+</table></td>
+	</tr>
+</tbody>
+					</table><input type="hidden" value="[]" id="dpStudentdob_calendar_SD" name="dpStudentdob_calendar_SD" /><input type="hidden" value="[[1960,1,1],[2015,1,1],[2015,1,1]]" id="dpStudentdob_calendar_AD" name="dpStudentdob_calendar_AD" /></div></td>
+				</tr>
+			</tbody></table><input type="hidden" name="dpStudentdob_ClientState" id="dpStudentdob_ClientState" value="{&quot;minDateStr&quot;:&quot;01/01/1960&quot;,&quot;maxDateStr&quot;:&quot;01/01/2015&quot;}" autocomplete="off" />
+		</div>
+
+                                <span style="color:Red;visibility:hidden;" id="RequiredFieldValidator2">Enter Valid D.O.B.</span>
+
+                            </td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+                                <input type="submit" style="height:30px;width:200px;" class="pure-button-primary" id="btnView" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("btnView", "", true, "a", "", false, false))' value="View Result" name="btnView" /><br />
+                                <p style="color:red">FOR USERID AND PASSWORD CONTACT TO YOUR COLLEGE ADMINISTRATION.</p>
+                            </td>
+	</tr>
+</tbody></table>
+
+
+
+                </div>
+                <br />
+                <br />
+                <div align="center" id="tblResultSummary">
+
+                    <table class="pure-table pure-table-bordered">
+                        <thead>
+                            <tr align="center">
+                                <th>Published Result Summary</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+	<table border="1" cellspacing="0" cellpadding="4" style="color:Black;background-color:White;border-color:#CCCCCC;border-width:1px;border-style:None;width:1000px;border-collapse:collapse;" id="gvResultSummary" rules="rows" class="pure-table pure-table-bordered">
+		<tbody><tr style="color:White;background-color:#333333;font-weight:bold;">
+			<th scope="col">S.No</th><th scope="col">Course Name</th><th scope="col">Session</th><th scope="col">View Result</th>
+		</tr><tr>
+			<td align="center">
+                                                    <span id="gvResultSummary_ctl02_lblSNO">1</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl02_lblSubCode">B.Tech.(ELECTRICAL ENGINEERING), 3rdSemester</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl02_lblSession">2015-2016</span>
+                                                </td><td align="center">
+                                                    <a href="javascript:__doPostBack('gvResultSummary$ctl02$lnkViewResult','')" id="gvResultSummary_ctl02_lnkViewResult">View Result</a>
+                                                </td>
+		</tr><tr>
+			<td align="center">
+                                                    <span id="gvResultSummary_ctl03_lblSNO">2</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl03_lblSubCode">B.Tech.(ELECTRICAL ENGINEERING), 5thSemester</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl03_lblSession">2015-2016</span>
+                                                </td><td align="center">
+                                                    <a href="javascript:__doPostBack('gvResultSummary$ctl03$lnkViewResult','')" id="gvResultSummary_ctl03_lnkViewResult">View Result</a>
+                                                </td>
+		</tr><tr>
+			<td align="center">
+                                                    <span id="gvResultSummary_ctl04_lblSNO">3</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl04_lblSubCode">B.Tech.(ELECTRICAL ENGINEERING), 6thSemester</span>
+                                                </td><td align="center">
+                                                    <span id="gvResultSummary_ctl04_lblSession">2015-2016</span>
+                                                </td><td align="center">
+                                                    <a href="javascript:__doPostBack('gvResultSummary$ctl04$lnkViewResult','')" id="gvResultSummary_ctl04_lnkViewResult">View Result</a>
+                                                </td>
+		</tr><tr style="color:Black;background-color:#CCCC99;">
+			<td>
+                                                </td><td>
+                                                </td><td> </td><td> </td>
+		</tr>
+	</tbody></table>
+</div>
+
+
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <br />
+                <div align="center" id="tblBasicDetail">
+                    <table class="pure-table pure-table-striped pure-table-bordered">
+                        <thead>
+                            <tr align="center">
+                                <th colspan="2">Student Result Summary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr align="left">
+                                <td>Examination:</td>
+                                <td>
+                                    <span style="color:DarkBlue;font-weight:bold;" id="lblResultName">B.Tech.(ELECTRICAL ENGINEERING), 6thSemester</span></td>
+
+                            </tr>
+
+                            <tr align="left">
+                                <td>ResultType:</td>
+                                <td>
+                                    <span style="color:DarkBlue;font-weight:bold;" id="lblResultType">2015-2016</span></td>
+
+                            </tr>
+                            <tr align="left">
+                                <td>Student Reg No:</td>
+                                <td>
+                                    <span style="color:DarkBlue;font-weight:bold;" id="lblRollNo">1301106425</span></td>
+
+                            </tr>
+                            <tr align="left">
+                                <td>Student Name:</td>
+                                <td>
+                                    <span style="font-weight:bold;" id="lblName">PARTHASARATHY NAYAK</span></td>
+
+                            </tr>
+                            <tr align="left">
+                                <td>College:</td>
+                                <td>
+                                    <span style="font-weight:bold;" id="lblCollege">COLLEGE OF ENGINEERING &amp; TECHNOLOGY, BHUBANESWAR</span></td>
+
+                            </tr>
+                            <tr align="left">
+                                <td>Branch:</td>
+                                <td>
+                                    <span style="font-weight:bold;" id="lblBranch">B.Tech.(ELECTRICAL ENGINEERING)</span></td>
+
+                            </tr>
+
+
+
+                            <tr>
+                                <td colspan="2">
+
+
+
+                                    <div>
+	<table border="1" cellspacing="0" cellpadding="4" style="background-color:White;border-color:#CC9966;border-width:1px;border-style:None;width:1000px;border-collapse:collapse;" id="gvViewResult" rules="all" class="pure-table pure-table-bordered">
+		<tbody><tr align="left" style="color:#FFFFCC;background-color:#990000;font-weight:bold;">
+			<th scope="col">S.No</th><th scope="col">Subject Code</th><th scope="col">Subject</th><th align="left" scope="col">Credit</th><th align="left" scope="col">Grade</th>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl02_lblSerialNo">1</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl02_lblSubCode">PCEE4302</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl02_lblSubTitle">ELECTROMAGNETIC THEORY</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl02_lblSubCredit">3</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl02_lblSubGradePoint">C</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl03_lblSerialNo">2</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl03_lblSubCode">PCEL4303</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl03_lblSubTitle">MICROPROCESSOR AND MICROCONTROLLER</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl03_lblSubCredit">3</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl03_lblSubGradePoint">C</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl04_lblSerialNo">3</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl04_lblSubCode">PCEL7303</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl04_lblSubTitle">MICROPROCESSOR AND MICROCONTROLLER LABORATORY</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl04_lblSubCredit">2</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl04_lblSubGradePoint">E</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl05_lblSerialNo">4</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl05_lblSubCode">PCEL7304</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl05_lblSubTitle">MACHINE DESIGN AND SIMULATION LABORATORY</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl05_lblSubCredit">2</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl05_lblSubGradePoint">E</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl06_lblSerialNo">5</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl06_lblSubCode">PEEC4304</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl06_lblSubTitle">COMPUTER NETWORK AND DATA COMMUNICATION</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl06_lblSubCredit">3</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl06_lblSubGradePoint">C</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl07_lblSerialNo">6</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl07_lblSubCode">PEEL5303</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl07_lblSubTitle">ELECTRIC DRIVES</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl07_lblSubCredit">3</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl07_lblSubGradePoint">A</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:White;">
+			<td align="center">
+                                                    <span id="gvViewResult_ctl08_lblSerialNo">7</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl08_lblSubCode">PEEL7303</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl08_lblSubTitle">ELECTRIC DRIVES LABORATORY</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl08_lblSubCredit">2</span>
+                                                </td><td align="left">
+                                                    <span id="gvViewResult_ctl08_lblSubGradePoint">E</span>
+                                                </td>
+		</tr><tr style="color:#330099;background-color:#FFFFCC;">
+			<td>
+                                                </td><td>
+                                                </td><td>
+                                                </td><td align="left">
+                                                    <span style="font-weight:bold;" id="gvViewResult_ctl09_lblTotalCredit">Total Credits: 18</span>
+
+                                                </td><td align="left">
+                                                    <span style="font-weight:bold;" id="gvViewResult_ctl09_lblSGPA">SGPA: 7.33</span>
+                                                </td>
+		</tr>
+	</tbody></table>
+</div>
+
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <label><span style="color: darkred"><a href="mailto:Note:%20For%20any%20query%20regarding%20results%20please%20contact:%20students@bput.ac.in%20%28Note:%20Below%20date%20is%20applicable%20for%20only%208th%20Semester%20Results">Note: </a> </span><a href="mailto:Note:%20For%20any%20query%20regarding%20results%20please%20contact:%20students@bput.ac.in%20%28Note:%20Below%20date%20is%20applicable%20for%20only%208th%20Semester%20Results">For any query regarding results please contact: <span style="text-decoration: underline">students@bput.ac.in</span></a></label><a href="mailto:Note:%20For%20any%20query%20regarding%20results%20please%20contact:%20students@bput.ac.in%20%28Note:%20Below%20date%20is%20applicable%20for%20only%208th%20Semester%20Results"> (</a><span class="auto-style1"><a href="mailto:Note:%20For%20any%20query%20regarding%20results%20please%20contact:%20students@bput.ac.in%20%28Note:%20Below%20date%20is%20applicable%20for%20only%208th%20Semester%20Results"><span style="color:red"> Below date is applicable 
+                                    for only 8th Semester Results</span></a></span>).<br /><br />
+                                    <span style="color:darkred">Note: Grade With ( * ) Indicating Result After Rechecking/Re-Evaluation Grade.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <span>
+
+
+
+
+                                        <label>1.The result is provisional.</label><br />
+                                        <label>2.The students interested for retotaling/ rechecking only are required to apply on or before 28.06.2016 positively by paying Rs. 200 per answer script through the college.</label>
+                                        <br />
+                                        <label>3.Students interested for retotaling/rechecking alongwith copy (ies) of answer script are required to apply on or before 28.06.2016 positively by paying Rs. 260 per answer script through the college.</label>
+                                        <br />
+                                        <label>4.The colleges are required to apply online for sl.no. 2 and 3 above on or before 29.06.2016 and submit the registration fee through online(SB Collect) for  students applied in each category.</label>
+                                        <br />
+                                        <label>5.For eligible students whose Laboratory / Sessional Marks are not displayed in the result but they have appeared at the College level those marks should be sent to the University on or before 28.06.2016 at Rourkela Office.</label><br />
+                                        <label>6.As per the provision of the Grading System of the University 'M' denotes MALPRACTICE (Grade Point 0) and 'S' denotes ABSENT (Grade Point 0).</label><br />
+                                        <label>7.The SGPA shown for the subjects displayed in this page.</label>
+
+                                    </span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <label><span style="color: darkred">Disclaimer:</span></label>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <label>The results published are provisional and subject to change after post publication scruitny by BPUT. BPUT is not responsible for any inadvertent error that may have crept into the results being displayed.</label>
+
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td align="left" style="color: red; font-weight: bold" colspan="2">Note: F Grade in (Int=Internal, Ext=External, Pr=Practical)</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <br />
+            </div>
+    
+<script type="text/javascript">
+//&lt;![CDATA[
+var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator1"), document.getElementById("RequiredFieldValidator2"));
+//]]&gt;
+</script>
+
+<script type="text/javascript">
+//&lt;![CDATA[
+var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
+RequiredFieldValidator1.controltovalidate = "txtRegNo";
+RequiredFieldValidator1.errormessage = "Enter Valid registration No.";
+RequiredFieldValidator1.validationGroup = "a";
+RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator1.initialvalue = "";
+var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
+RequiredFieldValidator2.controltovalidate = "dpStudentdob";
+RequiredFieldValidator2.errormessage = "Enter Valid D.O.B.";
+RequiredFieldValidator2.validationGroup = "a";
+RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator2.initialvalue = "";
+//]]&gt;
+</script>
+
+
+<script type="text/javascript">
+//&lt;![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator1'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadDateInput, {"_displayText":"1/1/2015","_focused":false,"_initialValueAsText":"2015-01-01-00-00-00","_postBackEventReferenceScript":"__doPostBack(\u0027dpStudentdob\u0027,\u0027\u0027)","_skin":"Default","_validationText":"2015-01-01-00-00-00","clientStateFieldID":"dpStudentdob_dateInput_ClientState","dateFormat":"M/d/yyyy","dateFormatInfo":{"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"AMDesignator":"AM","PMDesignator":"PM","DateSeparator":"/","TimeSeparator":":","FirstDayOfWeek":0,"DateSlots":{"Month":0,"Year":2,"Day":1},"ShortYearCenturyEnd":2029,"TimeInputOnly":false},"displayDateFormat":"M/d/yyyy","enabled":true,"incrementSettings":{InterceptArrowKeys:true,InterceptMouseWheel:true,Step:1},"maxDate":"2015-01-01-00-00-00","minDate":"1960-01-01-00-00-00","styles":{HoveredStyle: ["width:100%;", "riTextBox riHover"],InvalidStyle: ["width:100%;", "riTextBox riError"],DisabledStyle: ["width:100%;", "riTextBox riDisabled"],FocusedStyle: ["width:100%;", "riTextBox riFocused"],EmptyMessageStyle: ["width:100%;", "riTextBox riEmpty"],ReadOnlyStyle: ["width:100%;", "riTextBox riRead"],EnabledStyle: ["width:100%;", "riTextBox riEnabled"]}}, null, null, $get("dpStudentdob_dateInput"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadCalendar, {"_DayRenderChangedDays":{},"_FormatInfoArray":[["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["January","February","March","April","May","June","July","August","September","October","November","December",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"dddd, MMMM dd, yyyy h:mm:ss tt","dddd, MMMM dd, yyyy","h:mm:ss tt","MMMM dd","ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","M/d/yyyy","h:mm tt","yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","MMMM, yyyy","AM","PM","/",":",0],"_ViewRepeatableDays":{},"_ViewsHash":{"dpStudentdob_calendar_Top" : [[2015,1,1], 1]},"_calendarWeekRule":0,"_culture":"en-US","_enableKeyboardNavigation":false,"_enableViewSelector":false,"_firstDayOfWeek":7,"_postBackCall":"__doPostBack(\u0027dpStudentdob$calendar\u0027,\u0027@@\u0027)","_rangeSelectionMode":0,"clientStateFieldID":"dpStudentdob_calendar_ClientState","enableMultiSelect":false,"enabled":true,"monthYearNavigationSettings":["Today","OK","Cancel","Date is out of range.","False","True","300","1","300","1","False"],"skin":"Default","specialDaysArray":[],"stylesHash":{"DayStyle": ["", ""],"CalendarTableStyle": ["", "rcMainTable"],"OtherMonthDayStyle": ["", "rcOtherMonth"],"TitleStyle": ["", ""],"SelectedDayStyle": ["", "rcSelected"],"SelectorStyle": ["", ""],"DisabledDayStyle": ["", "rcDisabled"],"OutOfRangeDayStyle": ["", "rcOutOfRange"],"WeekendDayStyle": ["", "rcWeekend"],"DayOverStyle": ["", "rcHover"],"FastNavigationStyle": ["", "RadCalendarMonthView RadCalendarMonthView_Default"],"ViewSelectorStyle": ["", "rcViewSel"]},"useColumnHeadersAsSelectors":false,"useRowHeadersAsSelectors":false}, null, null, $get("dpStudentdob_calendar"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadDatePicker, {"_PopupButtonSettings":{ ResolvedImageUrl : "", ResolvedHoverImageUrl : ""},"_animationSettings":{ShowAnimationDuration:300,ShowAnimationType:1,HideAnimationDuration:300,HideAnimationType:1},"_popupControlID":"dpStudentdob_popupButton","clientStateFieldID":"dpStudentdob_ClientState","focusedDate":"2015-01-01-00-00-00","maxDate":"2015-01-01-00-00-00","minDate":"1960-01-01-00-00-00"}, null, {"calendar":"dpStudentdob_calendar","dateInput":"dpStudentdob_dateInput"}, $get("dpStudentdob"));
+});
+
+document.getElementById('RequiredFieldValidator2').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator2'));
+}
+//]]&gt;
+</script>
+
+
+
+</div></form></body></html>
