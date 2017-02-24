@@ -10,7 +10,7 @@ $(document).ready(function(){
 	detailsSection.hide()
 
 	function hideStuff () {
-		console.log("Non CET Registration Number or Invalid Name")
+		console.log("Non CET Registration Number or Invalid Name heh")
 		profile.fadeOut(500)
 		detailsSection.fadeOut(500)
 	}
@@ -29,12 +29,12 @@ $(document).ready(function(){
 				rv = []
 				for(var i = 0; i < data.length; i++){
 					rv.push({
-						value: data[i].student_id,
-						tokens: [data[i].name, data[i].student_id],
+						value: data[i].regno,
+						tokens: [data[i].name, data[i].regno],
 						name: data[i].name,
 						batch: data[i].batch,
 						branch: data[i].branch,
-						student_id: data[i].student_id
+						regno: data[i].regno
 					})
 				}
 				return rv
@@ -58,8 +58,8 @@ $(document).ready(function(){
 		}
 	})
 
-	function getDetails(student_id){
-		$.getJSON("/"+student_id, function(data){
+	function getDetails(regno){
+		$.getJSON("/"+regno, function(data){
 			if(data == null){
 				hideStuff()
 			}
@@ -70,31 +70,34 @@ $(document).ready(function(){
 			profile.find("#name").html(data.name)
 			profile.find("#batch").html(data.batch)
 			profile.find("#branch").html(data.branch)
-			profile.find("#student_id").html(data.student_id)
+			profile.find("#regno").html(data.regno)
 
             console.log(data)
 
-//			details = detailsSection.find("tbody")
-//			details.html("")
-//
-//			var credits = 0
-//			var sumofproducts = 0
-//
-//			data.semesters.forEach(function(element, index){
-//				credits += element.credits
-//				sumofproducts += element.credits*element.sgpa
-//				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'><a href='"+element.path+"' target='new'>Semester "+element.sem+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
-//				element.subjects.forEach(function(subject, index){
-//					details.append("<tr><td class='mdl-data-table__cell--non-numeric'>"+subject.code+" - "+subject.name+"</td><td>"+subject.credits+"</td><td>"+subject.grade+"</td></tr>")
-//				})
-//			})
+			details = detailsSection.find("tbody")
+			details.html("")
 
-//			var cgpa = sumofproducts/credits
-//			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>"+credits+"</td><td>"+Math.round(cgpa*100)/100+"</td></tr>")
+			var credits = 0
+			var sumofproducts = 0
+
+			data.semesters.forEach(function(element, index){
+				credits += element.credits
+				sumofproducts += element.credits*element.sgpa
+
+				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'><a href='"+element.path+"' target='new'>Semester "+element.sem+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
+				element.subjects.forEach(function(subject, index){
+					details.append("<tr><td class='mdl-data-table__cell--non-numeric'>"+subject.code+" - "+subject.name+"</td><td>"+subject.credits+"</td><td>"+subject.grade+"</td></tr>")
+				})
+				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'><a href='"+element.path+"' target='new'>Semester "+element.sem+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
+
+			})
+
+			var cgpa = sumofproducts/credits
+			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>"+credits+"</td><td>"+Math.round(cgpa*100)/100+"</td></tr>")
 
 			$("#hide").click(function(e){
-				console.log("Gonna hide", data.student_id)
-				$.getJSON("/hide/"+data.student_id, function(data){
+				console.log("Gonna hide", data.regno)
+				$.getJSON("/hide/"+data.regno, function(data){
 					alert(data.message)
 				})
 			})
