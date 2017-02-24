@@ -26,9 +26,9 @@ $(document).ready(function(){
 			wildcard: '%QUERY',
 			transform: function(response){
 				data = response.students
-				rv = []
+				queriedStudentList = []
 				for(var i = 0; i < data.length; i++){
-					rv.push({
+					queriedStudentList.push({
 						value: data[i].regno,
 						tokens: [data[i].name, data[i].regno],
 						name: data[i].name,
@@ -37,7 +37,7 @@ $(document).ready(function(){
 						regno: data[i].regno
 					})
 				}
-				return rv
+				return queriedStudentList
 			}
 		}
 	})
@@ -82,13 +82,13 @@ $(document).ready(function(){
 
 			data.semesters.forEach(function(element, index){
 				credits += element.credits
-				sumofproducts += element.credits*element.sgpa
-
-				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'><a href='"+element.path+"' target='new'>Semester "+element.sem+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
+				sumofproducts += element.credits*element.sgpa;
+				details.append("<tr class='mdl-color--primary-dark'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='"+element.path+"' target='new'>Semester "+element.sem.slice(-1)+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td></tr>")
+				details.append('<th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
 				element.subjects.forEach(function(subject, index){
 					details.append("<tr><td class='mdl-data-table__cell--non-numeric'>"+subject.code+" - "+subject.name+"</td><td>"+subject.credits+"</td><td>"+subject.grade+"</td></tr>")
 				})
-				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'><a href='"+element.path+"' target='new'>Semester "+element.sem+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
+				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric' style='text-align:left'><div> Credits : Sgpa </div></td><td>"+element.credits+"</td><td>"+element.sgpa+"</td></tr>")
 
 			})
 
