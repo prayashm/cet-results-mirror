@@ -19,24 +19,32 @@ def send_raw(path):
 @app.route("/<int:student_id>")
 def getStudentByRegNo(student_id):
     models.db.connect()
-    student = models.Student.get(models.Student.student_id == student_id)
-    semesters = []
-    exams = models.Exam.select().where(models.Exam.student_id == student_id)
-    for exam in exams:
-        subjects = []
-        for score in models.Score.select().where(models.Score.student_id == student_id,
-                                                 models.Score.semester_id == exam.semester_id):
-            subject_details = models.Subject.get(models.Subject.code == score.subject_id)
-            subjects.append(
-                {'name': subject_details.name, 'code': '', 'credits': subject_details.credits,
-                 'grade': score.grade})
+    if len(str(student_id)) != 10:
+        students = []
+        records = models.Student.select().where(models.Student.student_id.contains(str(student_id)))
+        for student in records:
+            students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
+                             'branch': student.branch_id})
+        return jsonify(students=students)
+    else:
+        student = models.Student.get(models.Student.student_id == student_id)
+        semesters = []
+        exams = models.Exam.select().where(models.Exam.student_id == student_id)
+        for exam in exams:
+            subjects = []
+            for score in models.Score.select().where(models.Score.student_id == student_id,
+                                                     models.Score.semester_id == exam.semester_id):
+                subject_details = models.Subject.get(models.Subject.code == score.subject_id)
+                subjects.append(
+                    {'name': subject_details.name, 'code': '', 'credits': subject_details.credits,
+                     'grade': score.grade})
 
-        semesters.append({'sem': exam.semester_id, 'sgpa': exam.sgpa,
-                          'path': 'raw/%d/%s/%s.html' % (student.batch, exam.semester_id, student.student_id),
-                          'credits': exam.credits, 'subjects': subjects})
-    # print semesters
-    return jsonify(name=student.name.title(), regno=student.student_id, branch=student.branch_id,
-                   batch=student.batch, semesters=semesters)
+            semesters.append({'sem': exam.semester_id, 'sgpa': exam.sgpa,
+                              'path': 'raw/%d/%s/%s.html' % (student.batch, exam.semester_id, student.student_id),
+                              'credits': exam.credits, 'subjects': subjects})
+        # print semesters
+        return jsonify(name=student.name.title(), regno=student.student_id, branch=student.branch_id,
+                       batch=student.batch, semesters=semesters)
 
 
 @app.route("/<partial_name>")
@@ -44,7 +52,7 @@ def getStudentByName(partial_name):
     models.db.connect()
     students = []
     records = models.Student.raw(
-        "SELECT * FROM student WHERE name LIKE '%%" + partial_name.upper() + "%%' AND is_visible = TRUE ORDER BY student_id DESC")
+        "SELECT * FROM student WHERE name LIKE '" + partial_name.upper() + "%%' AND is_visible = TRUE")
     for student in records:
         students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
                          'branch': student.branch_id})
@@ -68,4 +76,6 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    #debug only, 0.0.0.0
+    app.run(host = '0.0.0.0')

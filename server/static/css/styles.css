@@ -43,6 +43,7 @@ html, body {
 }
 .mdl-demo .mdl-card {
   height: auto;
+  min-height: 20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -248,7 +249,7 @@ html, body {
 }
 
 #userInput {
-  font-size: 55px;
+  font-size: 8vw;
 }
 
 div#inputBox {
@@ -383,6 +384,7 @@ i#avatar {
 }
 
 .semrow {
+  height: 42px;
   color: #ffffff;
   background-color: #003182;
   text-align: center;
