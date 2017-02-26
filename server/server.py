@@ -24,13 +24,14 @@ def getStudentByRegNo(student_id):
         records = models.Student.select().where(models.Student.student_id.startswith(student_id))
 
         for student in records:
+            branch = models.Branch.get(models.Branch.code == student.branch_id)
             students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
-                             'branch': student.branch_id})
+                             'branch': branch.name})
         """
         stupid hack, as javascript code screws up when len(records) <= 10
         """
         for student in records:
-            branch = models.Branch.select().where(models.Branch.code == student.branch_id)
+            branch = models.Branch.get(models.Branch.code == student.branch_id)
             students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
                              'branch': branch.name})
         return jsonify(students=students)
