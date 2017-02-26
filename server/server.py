@@ -60,8 +60,7 @@ def getStudentByRegNo(student_id):
 def getStudentByName(partial_name):
     models.db.connect()
     students = []
-    records = models.Student.raw(
-        "SELECT * FROM student WHERE name LIKE '" + partial_name.upper() + "%%' AND is_visible = TRUE")
+    records = models.Student.select().where(models.Student.name.startswith(partial_name.upper()))
     for student in records:
         students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
                          'branch': student.branch_id})

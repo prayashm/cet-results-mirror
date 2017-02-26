@@ -10,14 +10,15 @@ $(document).ready(function(){
 	detailsSection.hide()
 
 	function hideStuff () {
-		console.log("Non CET Registration Number or Invalid Name heh")
+		console.log("Non CET Registration Number or Invalid Name")
+		input.bind()
 		profile.fadeOut(500)
 		detailsSection.fadeOut(500)
 	}
 
 	var userInput = $(".typeahead")
 	input = document.getElementById("userInput")
-	
+
 	var students = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -85,7 +86,7 @@ $(document).ready(function(){
 				sumofproducts += element.credits*element.sgpa;
 				details.append("<tr class='mdl-color--primary-dark semrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='"+element.path+"' target='new'>Semester "+element.sem.slice(-1)+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td></tr>")
 				details.append('<th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
-				
+
 				var ctr = 1;
 				element.subjects.forEach(function(subject, index){
 					if(ctr%2)
@@ -101,6 +102,10 @@ $(document).ready(function(){
 			var cgpa = sumofproducts/credits
 			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>"+credits+"</td><td colspan='98%'>"+Math.round(cgpa*100)/100+"</td></tr>")
 
+			var scroller = document.getElementById("profileSection");
+			scroller.scrollIntoView();
+			scroller.blur();
+
 			$("#hide").click(function(e){
 				console.log("Gonna hide", data.regno)
 				$.getJSON("/hide/"+data.regno, function(data){
@@ -108,7 +113,6 @@ $(document).ready(function(){
 				})
 			})
 		})
-
 }
 
 function showResults (input) {
