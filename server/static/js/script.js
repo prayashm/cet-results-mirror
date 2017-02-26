@@ -101,10 +101,14 @@ $(document).ready(function(){
 
 			var cgpa = sumofproducts/credits
 			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>"+credits+"</td><td colspan='98%'>"+Math.round(cgpa*100)/100+"</td></tr>")
+			
 
+			input.blur();
 			var scroller = document.getElementById("profileSection");
 			scroller.scrollIntoView();
+			scroller.focus();
 			scroller.blur();
+			
 
 			$("#hide").click(function(e){
 				console.log("Gonna hide", data.regno)
