@@ -21,11 +21,20 @@ def getStudentByRegNo(student_id):
     models.db.connect()
     if len(str(student_id)) != 10:
         students = []
-        records = models.Student.select().where(models.Student.student_id.contains(str(student_id)))
+        records = models.Student.select().where(models.Student.student_id.startswith(student_id))
+        counter = 0
         for student in records:
             students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
                              'branch': student.branch_id})
+        """
+        stupid hack, as javascript code screws up when len(records) <= 10
+        """
+        for student in records:
+            students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
+                             'branch': student.branch_id})
+            break
         return jsonify(students=students)
+
     else:
         student = models.Student.get(models.Student.student_id == student_id)
         semesters = []

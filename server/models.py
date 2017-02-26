@@ -27,7 +27,7 @@ class Branch(BaseModel):
 
 
 class Student(BaseModel):
-    student_id = peewee.PrimaryKeyField()
+    student_id = peewee.CharField()
     name = peewee.CharField()
     branch_id = peewee.CharField()
     batch = peewee.IntegerField()
@@ -36,7 +36,8 @@ class Student(BaseModel):
     is_visible = peewee.BooleanField(default=True)
 
     class Meta:
-        order_by = ('student_id', )
+        primary_key = peewee.CompositeKey('student_id', 'batch')
+        order_by = ('student_id',)
 
 
 class Exam(BaseModel):
