@@ -1,5 +1,6 @@
 import models
 from flask import Flask, jsonify, send_from_directory
+import sys
 
 app = Flask(__name__, static_url_path='')
 app.config.from_pyfile('app.cfg')
@@ -69,19 +70,54 @@ def getStudentByName(partial_name):
 
 
 @app.route("/hide/<int:student_id>")
-def hideStudent(regno):
+def hideStudent(student_id):
     models.db.connect()
-    student = models.Student.get(models.Student.student_id == regno)
-    student.is_visible = False
-    if student.save() == 1:
-        return jsonify(message="Success in hiding %s - %s" % (student.regno, student.name.title()))
+    student = models.Student.get(models.Student.student_id == student_id)
+    if student.is_visible:
+        student.is_visible = False
+        if student.save() == 1:
+            return jsonify(message="Success in hiding %s - %s" % (student.student_id, student.name.title()))
+        else:
+            return jsonify(message="Failed in hiding %s. It's already hidden from search by name" % student.student_id)
     else:
-        return jsonify(message="Failed in hiding %s. It's already hidden from search by name" % student.regno)
+        return jsonify(confirm="The roll is already hidden. Would you like to make it public ?")
+
+
+@app.route("/hide_data/<int:student_id>")
+def change_message(student_id):
+    models.db.connect()
+    student = models.Student.get(models.Student.student_id == student_id)
+    if not student.is_visible:
+        return jsonify(visible_message="Make your results public")
+    else:
+        return jsonify(visible_message="Make your results private")
+
+
+@app.route("/advanced")
+def fill_dropdowns():
+    models.db.connect()
+    branch_list = []
+    year_list = []
+    semester_list = []
+    for branch in models.Branch.select():
+        branch_list.append({"branch": branch.name.split(" ")[0], "code":branch.code})
+
+    for years in models.Student.select(models.Student.batch).distinct():
+        year_list.append({"year": years.batch})
+    """
+    dont be lazy, support other things like B-Arch
+    """
+    for semester in range(1, 9):
+        semester_list.append({"semester": "Semester - " + str(semester)})
+
+    return jsonify(branch=branch_list, batch=year_list, semester=semester_list)
 
 
 @app.route("/test")
 def test():
     return "<strong>It's Alive!</strong>"
+
+
 
 
 if __name__ == '__main__':

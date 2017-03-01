@@ -6,7 +6,8 @@
   <meta name="description" content="Mirror of BPUT Results for CET Bhubaneswar">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CET Results Mirror</title>
-
+  <!--Dropdown selector-->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="icon" sizes="192x192" href="images/android-desktop.png">
@@ -20,6 +21,10 @@
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#3372DF">
+
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <link rel="shortcut icon" href="images/favicon.png">
 
@@ -41,8 +46,8 @@
       </div>
       <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
         <a href="#overview" class="mdl-layout__tab is-active">Home</a>
-        <a href="#advanced" class="mdl-layout__tab">Advanced</a>
-        <a href="#about" class="mdl-layout__tab">About</a>
+        <a href="/#advanced" id="advanced" class="mdl-layout__tab">Advanced</a>
+        <a href="/#about" class="mdl-layout__tab">About</a>
         <a target="new" href="https://github.com/prayashm/cet-results-mirror" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
           <i class="material-icons" role="presentation">library_books</i>
           <span class="visuallyhidden">github</span>
@@ -126,11 +131,44 @@
         </section>
       </div>
       <div class="mdl-layout__tab-panel" id="advanced">
-        <section class="section--center mdl-grid mdl-grid--no-spacing">
-          <div class="mdl-cell mdl-cell--12-col">
-            <h5 id="lorem1">Coming soon</h5>
-          </div>
-        </section>
+        <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth" style="width: 72vw">
+            <input class="mdl-layout-icon mdl-textfield__input" type="text" id="branch_selector" readonly tabIndex="-1">
+            <label for="branch_selector" class="mdl-textfield__label">Select Branch</label>
+            <ul id="branch_dropdown" for="branch_selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            </ul>
+        </div>-->
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
+            <input class="mdl-textfield__input" type="text" id="branch_list" readonly tabIndex="-1">
+            <label for="branch_list">
+                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            </label>
+            <label for="branch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Branch</label>
+            <ul id="branch_dropdown"for="branch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            </ul>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
+            <input class="mdl-textfield__input" type="text" id="batch_list" readonly tabIndex="-1">
+            <label for="batch_list">
+                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            </label>
+            <label for="batch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Batch</label>
+            <ul id="batch_dropdown"for="batch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            </ul>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
+            <input class="mdl-textfield__input" type="text" id="sem_list" readonly tabIndex="-1">
+            <label for="sem_list">
+                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            </label>
+            <label for="sem_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Semester</label>
+            <ul id="sem_dropdown"for="sem_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            </ul>
+        </div>
+        <br>
+        <button id="display_stats" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Button
+        </button>
+
       </div>
 
       <div class="mdl-layout__tab-panel" id="about">
@@ -173,5 +211,7 @@
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/typeahead.bundle.js"></script>
   <script src="js/script.js"></script>
+  
+  <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
 </body>
 </html>

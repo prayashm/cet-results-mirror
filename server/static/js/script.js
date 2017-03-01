@@ -58,7 +58,32 @@ $(document).ready(function(){
 			suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
 		}
 	})
-
+	var advanced_tab = document.getElementById("advanced")
+	$("#advanced").click(function(e){
+		$.getJSON("/advanced", function(data){
+			if ( $('#branch_dropdown li').length == 0 ) {
+				data.branch.forEach(function(element, index){
+					$("#branch_dropdown").append('<li class="mdl-menu__item" id="'+ element.code +'">'+ element.branch +'</li>')
+				})
+			}
+			if($('#batch_dropdown li').length == 0){
+				data.batch.forEach(function(element, index){
+					$("#batch_dropdown").append('<li class="mdl-menu__item" id="'+ element.year +'">'+ element.year +'</li>')
+				})
+			}
+			if($('#sem_dropdown li').length == 0){
+				data.semester.forEach(function(element, index){
+					$("#sem_dropdown").append('<li class="mdl-menu__item" id="'+ element.semester.slice(-1) +'">'+ element.semester +'</li>')
+				})
+			}
+			getmdlSelect.init(".getmdl-select")
+			componentHandler.upgradeDom()
+			console.log(data)
+		})
+	})
+	$("#display_stats").click(function(e){
+		console.log("hi")
+	})
 	function getDetails(regno){
 		$.getJSON("/"+regno, function(data){
 			if(data == null){
@@ -116,8 +141,20 @@ $(document).ready(function(){
 					alert(data.message)
 				})
 			})
+
+			$("#btn2").click(function(e){
+				$.getJSON("/hide_data/" + data.regno, function(button_text){
+					var hide_button = document.getElementById("hide")
+					hide_button.innerText = button_text.visible_message
+					console.log(button_text)
+				})
+			})
+			
+			
 		})
 }
+
+
 
 function showResults (input) {
 	if (isCETRegNo.test(input)) {
