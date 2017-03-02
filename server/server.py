@@ -1,5 +1,5 @@
 import models
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 import sys
 
 app = Flask(__name__, static_url_path='')
@@ -118,7 +118,13 @@ def test():
     return "<strong>It's Alive!</strong>"
 
 
-
+@app.route("/advanced/results/", methods=['GET', 'POST'])
+def show_bulk_result():
+    branch_code = request.form
+    # batch = request.args.get('batch')
+    # semester_code = batch + "-" + request.args.get('semester')
+    print branch_code
+    return "<strong>It's Alive!</strong>"
 
 if __name__ == '__main__':
     # app.run()

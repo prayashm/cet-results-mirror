@@ -63,17 +63,17 @@ $(document).ready(function(){
 		$.getJSON("/advanced", function(data){
 			if ( $('#branch_dropdown li').length == 0 ) {
 				data.branch.forEach(function(element, index){
-					$("#branch_dropdown").append('<li class="mdl-menu__item" id="'+ element.code +'">'+ element.branch +'</li>')
+					$("#branch_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.code +'">'+ element.branch +'</li>')
 				})
 			}
 			if($('#batch_dropdown li').length == 0){
 				data.batch.forEach(function(element, index){
-					$("#batch_dropdown").append('<li class="mdl-menu__item" id="'+ element.year +'">'+ element.year +'</li>')
+					$("#batch_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.year +'">'+ element.year +'</li>')
 				})
 			}
 			if($('#sem_dropdown li').length == 0){
 				data.semester.forEach(function(element, index){
-					$("#sem_dropdown").append('<li class="mdl-menu__item" id="'+ element.semester.slice(-1) +'">'+ element.semester +'</li>')
+					$("#sem_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.semester.slice(-1) +'">'+ element.semester +'</li>')
 				})
 			}
 			getmdlSelect.init(".getmdl-select")
@@ -81,8 +81,12 @@ $(document).ready(function(){
 			console.log(data)
 		})
 	})
-	$("#display_stats").click(function(e){
-		console.log("hi")
+	$("#view-results").click(function(e){
+		var postdata= { branch: $('#branch_list').data('val'), batch: $('#batch_list').data('val'), semester: $('#sem_list').data('val')}
+		console.log(postdata)
+		$.post("/advanced/results/", postdata, function(response){
+			console.log(response)
+		}, 'json')
 	})
 	function getDetails(regno){
 		$.getJSON("/"+regno, function(data){
