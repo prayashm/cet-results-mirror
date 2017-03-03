@@ -75,6 +75,12 @@ class Subject(BaseModel):
         primary_key = peewee.CompositeKey('code')
 
 
+class BulkQuery(BaseModel):
+    student_id = peewee.CharField()
+    name = peewee.CharField()
+    sgpa = peewee.FloatField()
+
+
 def addTo(table, data_source):
     with db.atomic():
         if table == "Branch":

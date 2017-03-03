@@ -100,7 +100,10 @@ html, body {
   margin-bottom: 48px;
 }
 .mdl-demo section.section--center {
-  max-width: 860px;
+  /*max-width: 860px;*/
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 20px;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -236,9 +239,9 @@ html, body {
 .mdl-demo .mdl-menu__container {
   z-index: 99;
 }
-#inputBox .mdl-textfield__label:after {
+/*#inputBox .mdl-textfield__label:after {
   
-}
+}*/
 #userInput {
   border-bottom: none;
 }

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 	var isCETRegNo = /^1\d{2}1106\d{3}$/
 	var isNumber = /^\d{0,9}$/
 	var isName = /^[a-zA-Z ]+$/
@@ -6,10 +6,12 @@ $(document).ready(function(){
 	var profile = $("#profileSection")
 	var detailsSection = $("#detailsSection")
 
+	$("#download-results").hide()
+
 	profile.hide()
 	detailsSection.hide()
 
-	function hideStuff () {
+	function hideStuff() {
 		console.log("Non CET Registration Number or Invalid Name")
 		input.bind()
 		profile.fadeOut(500)
@@ -22,13 +24,13 @@ $(document).ready(function(){
 	var students = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		remote : {
+		remote: {
 			url: '/%QUERY',
 			wildcard: '%QUERY',
-			transform: function(response){
+			transform: function (response) {
 				data = response.students
 				queriedStudentList = []
-				for(var i = 0; i < data.length; i++){
+				for (var i = 0; i < data.length; i++) {
 					queriedStudentList.push({
 						value: data[i].regno,
 						tokens: [data[i].name, data[i].regno],
@@ -48,32 +50,32 @@ $(document).ready(function(){
 		hint: false,
 		highlight: true
 	},
-	{
-		name: 'students',
-		limit: 10,
-		display: 'value',
-		source: students.ttAdapter(),
-		templates: {
-			notFound: Handlebars.compile('<div class="notFound">No student found with name: <strong>{{query}}</strong></div>'),
-			suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
-		}
-	})
+		{
+			name: 'students',
+			limit: 10,
+			display: 'value',
+			source: students.ttAdapter(),
+			templates: {
+				notFound: Handlebars.compile('<div class="notFound">No student found with name: <strong>{{query}}</strong></div>'),
+				suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
+			}
+		})
 	var advanced_tab = document.getElementById("advanced")
-	$("#advanced").click(function(e){
-		$.getJSON("/advanced", function(data){
-			if ( $('#branch_dropdown li').length == 0 ) {
-				data.branch.forEach(function(element, index){
-					$("#branch_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.code +'">'+ element.branch +'</li>')
+	$("#advanced").click(function (e) {
+		$.getJSON("/advanced", function (data) {
+			if ($('#branch_dropdown li').length == 0) {
+				data.branch.forEach(function (element, index) {
+					$("#branch_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
 				})
 			}
-			if($('#batch_dropdown li').length == 0){
-				data.batch.forEach(function(element, index){
-					$("#batch_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.year +'">'+ element.year +'</li>')
+			if ($('#batch_dropdown li').length == 0) {
+				data.batch.forEach(function (element, index) {
+					$("#batch_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
 				})
 			}
-			if($('#sem_dropdown li').length == 0){
-				data.semester.forEach(function(element, index){
-					$("#sem_dropdown").append('<li class="mdl-menu__item selected" data-val="'+ element.semester.slice(-1) +'">'+ element.semester +'</li>')
+			if ($('#sem_dropdown li').length == 0) {
+				data.semester.forEach(function (element, index) {
+					$("#sem_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
 				})
 			}
 			getmdlSelect.init(".getmdl-select")
@@ -81,16 +83,28 @@ $(document).ready(function(){
 			console.log(data)
 		})
 	})
-	$("#view-results").click(function(e){
-		var postdata= { branch: $('#branch_list').data('val'), batch: $('#batch_list').data('val'), semester: $('#sem_list').data('val')}
+	$("#view-results").click(function (e) {
+		var postdata = { branch: $('#branch_list').attr("data-val"), batch: $('#batch_list').attr("data-val"), semester: $('#sem_list').attr("data-val") }
 		console.log(postdata)
-		$.post("/advanced/results/", postdata, function(response){
+		$("#download-results").show()
+		$.post("/advanced/results/", postdata, function (response) {
+			details = $("#bulkDetailsSection").find("tbody")
+			details.empty()
+			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
 			console.log(response)
+			var ctr = 1
+			response.students.forEach(function (data, index) {
+				if (ctr % 2)
+					details.append("<tr><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td>" + data.sgpa + "</td></tr>")
+				else
+					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td>" + data.sgpa + "</td></tr>")
+				ctr++;
+			})
 		}, 'json')
 	})
-	function getDetails(regno){
-		$.getJSON("/"+regno, function(data){
-			if(data == null){
+	function getDetails(regno) {
+		$.getJSON("/" + regno, function (data) {
+			if (data == null) {
 				hideStuff()
 			}
 
@@ -102,7 +116,7 @@ $(document).ready(function(){
 			profile.find("#branch").html(data.branch)
 			profile.find("#regno").html(data.regno)
 
-            console.log(data)
+			console.log(data)
 
 			details = detailsSection.find("tbody")
 			details.html("")
@@ -110,89 +124,89 @@ $(document).ready(function(){
 			var credits = 0
 			var sumofproducts = 0
 
-			data.semesters.forEach(function(element, index){
+			data.semesters.forEach(function (element, index) {
 				credits += element.credits
-				sumofproducts += element.credits*element.sgpa;
-				details.append("<tr class='mdl-color--primary-dark semrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='"+element.path+"' target='new'>Semester "+element.sem.slice(-1)+" <i class='material-icons' id='open_icon'>open_in_new</i></a></td></tr>")
+				sumofproducts += element.credits * element.sgpa;
+				details.append("<tr class='mdl-color--primary-dark semrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='" + element.path + "' target='new'>Semester " + element.sem.slice(-1) + " <i class='material-icons' id='open_icon'>open_in_new</i></a></td></tr>")
 				details.append('<th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
 
 				var ctr = 1;
-				element.subjects.forEach(function(subject, index){
-					if(ctr%2)
-						details.append("<tr><td class='mdl-data-table__cell--non-numeric'>"+subject.name+"</td><td>"+subject.credits+"</td><td>"+subject.grade+"</td></tr>")
+				element.subjects.forEach(function (subject, index) {
+					if (ctr % 2)
+						details.append("<tr><td class='mdl-data-table__cell--non-numeric'>" + subject.name + "</td><td>" + subject.credits + "</td><td>" + subject.grade + "</td></tr>")
 					else
-						details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td class='mdl-data-table__cell--non-numeric'>"+subject.name+"</td><td>"+subject.credits+"</td><td>"+subject.grade+"</td></tr>")
+						details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td class='mdl-data-table__cell--non-numeric'>" + subject.name + "</td><td>" + subject.credits + "</td><td>" + subject.grade + "</td></tr>")
 					ctr++;
-			})
-				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric' style='text-align:left'><div> Credits : Sgpa </div></td><td>"+element.credits+"</td><td colspan='98%'>"+element.sgpa+"</td></tr>")
+				})
+				details.append("<tr class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric' style='text-align:left'><div> Credits : Sgpa </div></td><td>" + element.credits + "</td><td colspan='98%'>" + element.sgpa + "</td></tr>")
 
 			})
 
-			var cgpa = sumofproducts/credits
-			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>"+credits+"</td><td colspan='98%'>"+Math.round(cgpa*100)/100+"</td></tr>")
-			
+			var cgpa = sumofproducts / credits
+			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>" + credits + "</td><td colspan='98%'>" + Math.round(cgpa * 100) / 100 + "</td></tr>")
+
 
 			input.blur();
 			var scroller = document.getElementById("profileSection");
 			scroller.scrollIntoView();
 			scroller.focus();
 			scroller.blur();
-			
 
-			$("#hide").click(function(e){
+
+			$("#hide").click(function (e) {
 				console.log("Gonna hide", data.regno)
-				$.getJSON("/hide/"+data.regno, function(data){
+				$.getJSON("/hide/" + data.regno, function (data) {
 					alert(data.message)
 				})
 			})
 
-			$("#btn2").click(function(e){
-				$.getJSON("/hide_data/" + data.regno, function(button_text){
+			$("#btn2").click(function (e) {
+				$.getJSON("/hide_data/" + data.regno, function (button_text) {
 					var hide_button = document.getElementById("hide")
 					hide_button.innerText = button_text.visible_message
 					console.log(button_text)
 				})
 			})
-			
-			
+
+
 		})
-}
-
-
-
-function showResults (input) {
-	if (isCETRegNo.test(input)) {
-		console.log("Valid CET Registration Number, going for data retrieval")
-		getDetails(input)
-	}
-	else {
-		hideStuff()
-	}
-}
-
-userInput.bind("typeahead:select", function(e, selection){
-	showResults(selection.value)
-	console.log("Selected", selection.name)
-})
-
-userInput.bind("keypress", function(e){
-	var $this = $(this)
-	var input = userInput.val()
-
-	if(isNumber.test(input)){
-		$('.notFound').addClass("hidden")
-		console.log("Closing typeahead")
 	}
 
-	if (e.which == 13) {
-		showResults(input)
-	}
-})
 
-userInput.change(function(e){
-	if (userInput.val() == '') {
-		hideStuff()
+
+	function showResults(input) {
+		if (isCETRegNo.test(input)) {
+			console.log("Valid CET Registration Number, going for data retrieval")
+			getDetails(input)
+		}
+		else {
+			hideStuff()
+		}
 	}
-})
+
+	userInput.bind("typeahead:select", function (e, selection) {
+		showResults(selection.value)
+		console.log("Selected", selection.name)
+	})
+
+	userInput.bind("keypress", function (e) {
+		var $this = $(this)
+		var input = userInput.val()
+
+		if (isNumber.test(input)) {
+			$('.notFound').addClass("hidden")
+			console.log("Closing typeahead")
+		}
+
+		if (e.which == 13) {
+			showResults(input)
+		}
+	})
+
+	userInput.change(function (e) {
+		if (userInput.val() == '') {
+			hideStuff()
+		}
+	})
 
 })

@@ -100,7 +100,7 @@ def fill_dropdowns():
     year_list = []
     semester_list = []
     for branch in models.Branch.select():
-        branch_list.append({"branch": branch.name.split(" ")[0], "code":branch.code})
+        branch_list.append({"branch": branch.name.split(" ")[0], "code": branch.code})
 
     for years in models.Student.select(models.Student.batch).distinct():
         year_list.append({"year": years.batch})
@@ -120,13 +120,26 @@ def test():
 
 @app.route("/advanced/results/", methods=['GET', 'POST'])
 def show_bulk_result():
-    branch_code = request.form
-    # batch = request.args.get('batch')
-    # semester_code = batch + "-" + request.args.get('semester')
-    print branch_code
-    return "<strong>It's Alive!</strong>"
+    models.db.connect()
+    branch_code = str(request.form['branch'])
+    batch = str(request.form['batch'])
+    semester_code = batch + "-" + str(request.form['semester'])
+    data = models.BulkQuery.raw('SELECT t1.sgpa, t2.student_id,t2.name FROM `exam` as t1 RIGHT JOIN '
+                                        '(SELECT * FROM `student` )as t2 ON t1.student_id = t2.student_id '
+                                        'WHERE t2.branch_id ="' + branch_code + '" AND t2.batch =' + batch +
+                                        ' AND t1.semester_id ="' + semester_code +
+                                        '" ORDER BY `t1`.`sgpa` DESC').execute()
+    students = []
+    for student in data:
+        students.append({"name": student.name, "student_id" : student.student_id, "sgpa": student.sgpa})
+    return jsonify(students=students)
+
+
+@app.route("/download")
+def download_csv():
+    pass
 
 if __name__ == '__main__':
     # app.run()
-    #debug only, 0.0.0.0
-    app.run(host = '0.0.0.0')
+    # debug only, 0.0.0.0
+    app.run(host='0.0.0.0')

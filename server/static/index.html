@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,17 +24,18 @@
   <meta name="msapplication-TileColor" content="#3372DF">
 
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.indigo-pink.min.css">
-    <!-- Material Design icon font -->
+  <!-- Material Design icon font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <link rel="shortcut icon" href="images/favicon.png">
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/material.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
@@ -48,7 +50,8 @@
         <a href="#overview" class="mdl-layout__tab is-active">Home</a>
         <a href="/#advanced" id="advanced" class="mdl-layout__tab">Advanced</a>
         <a href="/#about" class="mdl-layout__tab">About</a>
-        <a target="new" href="https://github.com/prayashm/cet-results-mirror" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+        <a target="new" href="https://github.com/prayashm/cet-results-mirror" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent"
+          id="add">
           <i class="material-icons" role="presentation">library_books</i>
           <span class="visuallyhidden">github</span>
         </a>
@@ -98,7 +101,8 @@
                 </tbody>
               </table>
 
-            </div><!--
+            </div>
+            <!--
             <div class="mdl-card__actions">
               <a href="#" class="mdl-button">Download all</a>
               <a href="#" class="mdl-button">Report error</a>
@@ -118,10 +122,12 @@
             <div class="mdl-card__supporting-text">
               <h4>What is this?</h4>
               <p>
-                This project aims at keeping a copy of <a href="http://results.bput.ac.in">Results at BPUT server </a> for <a href="http://cet.edu.in">College of Engineering and Technology, Bhubaneswar</a>.
-                It has results from the BPUT server as on  01/01/2016 from Batches of 2014 till 2018.
+                This project aims at keeping a copy of <a href="http://results.bput.ac.in">Results at BPUT server </a> for
+                <a href="http://cet.edu.in">College of Engineering and Technology, Bhubaneswar</a>. It has results from the
+                BPUT server as on 01/01/2016 from Batches of 2014 till 2018.
               </p>
-              <p>This server has a copy of the results from BPUT, i.e. they'll be available irrespective of the uptime of BPUT Server. Happy New Year!</p>
+              <p>This server has a copy of the results from BPUT, i.e. they'll be available irrespective of the uptime of BPUT
+                Server. Happy New Year!</p>
             </div>
             <!-- <div class="mdl-card__actions">
               <a href="#" class="mdl-button">Opt out of this</a>
@@ -137,45 +143,68 @@
             <ul id="branch_dropdown" for="branch_selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
             </ul>
         </div>-->
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
-            <input class="mdl-textfield__input" type="text" id="branch_list" readonly tabIndex="-1">
-            <label for="branch_list">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
+          <input class="mdl-textfield__input" type="text" id="branch_list" readonly tabIndex="-1">
+          <label for="branch_list">
                 <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
             </label>
-            <label for="branch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Branch</label>
-            <ul id="branch_dropdown"for="branch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            </ul>
+          <label for="branch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Branch</label>
+          <ul id="branch_dropdown" for="branch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+          </ul>
         </div>
-        <div id="getbatch" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
-            <input class="mdl-textfield__input" type="text" id="batch_list" readonly tabIndex="-1">
-            <label for="batch_list">
+        <div id="getbatch" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+          style="text-align: center;width: 80%;margin-left: 10%;">
+          <input class="mdl-textfield__input" type="text" id="batch_list" readonly tabIndex="-1">
+          <label for="batch_list">
                 <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
             </label>
-            <label for="batch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Batch</label>
-            <ul id="batch_dropdown"for="batch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            </ul>
+          <label for="batch_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Batch</label>
+          <ul id="batch_dropdown" for="batch_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+          </ul>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
-            <input class="mdl-textfield__input" type="text" id="sem_list" readonly tabIndex="-1">
-            <label for="sem_list">
+          <input class="mdl-textfield__input" type="text" id="sem_list" readonly tabIndex="-1">
+          <label for="sem_list">
                 <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
             </label>
-            <label for="sem_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Semester</label>
-            <ul id="sem_dropdown"for="sem_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            </ul>
+          <label for="sem_list" class="mdl-textfield__label" style="color:rgba(0, 0, 0, 0.7)">Select Semester</label>
+          <ul id="sem_dropdown" for="sem_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+          </ul>
         </div>
         <br>
-        <button id="view-results" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="width: 80%;margin-left: 10%;">
+        <button id="view-results" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width: 80%;margin-left: 10%;">
           Button
         </button>
+        <section id="bulkDetailsSection" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="margin-bottom:48px">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text mdl-grid">
+              <!-- <h4 class="mdl-cell mdl-cell--12-col">Details</h4> -->
+              <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack" data-upgraded=",MaterialDataTable" style="width: 98%">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
 
+            </div>
+            <!--
+            <div class="mdl-card__actions">
+              <a href="#" class="mdl-button">Download all</a>
+              <a href="#" class="mdl-button">Report error</a>
+            </div> -->
+          </div>
+        </section>
+        <button id="download-results" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width: 80%;margin-left: 10%;">
+          Save Data
+        </button>
       </div>
 
       <div class="mdl-layout__tab-panel" id="about">
         <section class="section--center mdl-grid mdl-grid--no-spacing">
           <div class="mdl-cell mdl-cell--12-col">
             <h5 id="lorem1">How it began...</h5>
-            Once upon a time, a friend really needed to print his results for a schoralship application. But the dear BPUT site was down. Here's the solution. A copy of BPUT Results site for College of Engineering and Technology, Bhubaneswar.
+            Once upon a time, a friend really needed to print his results for a schoralship application. But the dear BPUT site was down.
+            Here's the solution. A copy of BPUT Results site for College of Engineering and Technology, Bhubaneswar.
             <h6>Features:</h6>
             <ul>
               <li>Mirror of BPUT Results</li>
@@ -196,7 +225,8 @@
         <div class="mdl-mega-footer--bottom-section">
           <div class="mdl-logo">
             CET Results Mirror
-          </div><!--
+          </div>
+          <!--
           <ul class="mdl-mega-footer--link-list">
             <li><a href="http://google.com">Don't Panic</a></li>
           </ul> -->
@@ -211,7 +241,8 @@
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/typeahead.bundle.js"></script>
   <script src="js/script.js"></script>
-  
+
   <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
 </body>
+
 </html>
