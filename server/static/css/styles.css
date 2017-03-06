@@ -394,6 +394,24 @@ i#avatar {
   font-size: larger;
 }
 
+.downloadrow {
+  height: 42px;
+  color: #ffffff;
+  background-color: #105a0b;
+  text-align: center;
+  font-size: larger;
+}
+
 #open_icon {
   font-size: medium;
+}
+.mdl-menu__outline{
+  width: 100%;
+}
+
+@media screen and (min-width: 400px) {
+  .mdl-layout__tab-panel{
+    width: 80%;
+    margin-left: 10%;
+  }
 }

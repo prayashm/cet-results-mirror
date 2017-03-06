@@ -66,17 +66,17 @@ $(document).ready(function () {
 		$.getJSON("/advanced", function (data) {
 			if ($('#branch_dropdown li').length == 0) {
 				data.branch.forEach(function (element, index) {
-					$("#branch_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
+					$("#branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
 				})
 			}
 			if ($('#batch_dropdown li').length == 0) {
 				data.batch.forEach(function (element, index) {
-					$("#batch_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
+					$("#batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
 				})
 			}
 			if ($('#sem_dropdown li').length == 0) {
 				data.semester.forEach(function (element, index) {
-					$("#sem_dropdown").append('<li class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
+					$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
 				})
 			}
 			getmdlSelect.init(".getmdl-select")
@@ -94,7 +94,7 @@ $(document).ready(function () {
 			details = $("#bulkDetailsSection").find("tbody")
 			details.empty()
 			
-			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
+			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Name</th><th class="mdl-cell--3-col">Roll</th><th class="mdl-cell--3-col">SGPA</th>')
 			console.log(response)
 			var ctr = 1
 			response.students.forEach(function (data, index) {
@@ -104,7 +104,9 @@ $(document).ready(function () {
 					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td>" + data.sgpa + "</td></tr>")
 				ctr++;
 			})
-			details.append("<tr class='mdl-color--primary-dark semrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
+			for(var  i = 0; i < 10; i++)
+				details.append("<tr><td> </td></tr>")
+			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
 		}, 'json')
 	})
 
@@ -122,6 +124,7 @@ $(document).ready(function () {
 			profile.find("#branch").html(data.branch)
 			profile.find("#regno").html(data.regno)
 
+			downloadFileName = data.regno + ".csv"
 			console.log(data)
 
 			details = detailsSection.find("tbody")
@@ -150,7 +153,9 @@ $(document).ready(function () {
 
 			var cgpa = sumofproducts / credits
 			details.append("<tr id='cgpa' class='mdl-color--primary-dark semrow'><td class='mdl-data-table__cell--non-numeric'>CGPA</td><td>" + credits + "</td><td colspan='98%'>" + Math.round(cgpa * 100) / 100 + "</td></tr>")
-
+			for(var  i = 0; i < 10; i++)
+				details.append("<tr><td> </td></tr>")
+			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
 
 			input.blur();
 			var scroller = document.getElementById("profileSection");
@@ -173,7 +178,7 @@ $(document).ready(function () {
 					console.log(button_text)
 				})
 			})
-
+			
 
 		})
 	}
