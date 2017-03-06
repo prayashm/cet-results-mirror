@@ -1,6 +1,15 @@
 import models
+
 from flask import Flask, jsonify, send_from_directory, request
 import sys
+import csv
+
+
+def write_to_csv(data):
+    with open("../data/results.csv", "w") as csvFile:
+        writer = csv.writer(csvFile, delimiter=',')
+        for row in data:
+            writer.writerow(row)
 
 app = Flask(__name__, static_url_path='')
 app.config.from_pyfile('app.cfg')
@@ -14,7 +23,7 @@ def root():
 # Serve the Raw Files Directly
 @app.route("/raw/<path:path>")
 def send_raw(path):
-    return send_from_directory('data', path)
+    return send_from_directory('../data', path)
 
 
 @app.route("/<int:student_id>")
@@ -40,8 +49,10 @@ def getStudentByRegNo(student_id):
     else:
         student = models.Student.get(models.Student.student_id == student_id)
         semesters = []
+        csv_data = []
         exams = models.Exam.select().where(models.Exam.student_id == student_id)
         for exam in exams:
+            csv_data.append([exam.semester_id])
             subjects = []
             for score in models.Score.select().where(models.Score.student_id == student_id,
                                                      models.Score.semester_id == exam.semester_id):
@@ -49,11 +60,13 @@ def getStudentByRegNo(student_id):
                 subjects.append(
                     {'name': subject_details.name, 'code': '', 'credits': subject_details.credits,
                      'grade': score.grade})
+                csv_data.append([subject_details.name, score.subject_id, subject_details.credits, score.grade])
 
             semesters.append({'sem': exam.semester_id, 'sgpa': exam.sgpa,
                               'path': 'raw/%d/%s/%s.html' % (student.batch, exam.semester_id, student.student_id),
                               'credits': exam.credits, 'subjects': subjects})
         # print semesters
+        write_to_csv(csv_data)
         return jsonify(name=student.name.title(), regno=student.student_id, branch=student.branch_id,
                        batch=student.batch, semesters=semesters)
 
@@ -121,23 +134,26 @@ def test():
 @app.route("/advanced/results/", methods=['GET', 'POST'])
 def show_bulk_result():
     models.db.connect()
-    branch_code = str(request.form['branch'])
-    batch = str(request.form['batch'])
-    semester_code = batch + "-" + str(request.form['semester'])
+    branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
+    batch = str(request.form['batch']).translate(None, '!=%,;')
+    semester_code = batch + "-" + str(request.form['semester']).translate(None, '!=%,;')
     data = models.BulkQuery.raw('SELECT t1.sgpa, t2.student_id,t2.name FROM `exam` as t1 RIGHT JOIN '
                                         '(SELECT * FROM `student` )as t2 ON t1.student_id = t2.student_id '
                                         'WHERE t2.branch_id ="' + branch_code + '" AND t2.batch =' + batch +
                                         ' AND t1.semester_id ="' + semester_code +
                                         '" ORDER BY `t1`.`sgpa` DESC').execute()
     students = []
+    csv_data = []
     for student in data:
         students.append({"name": student.name, "student_id" : student.student_id, "sgpa": student.sgpa})
+        csv_data.append([student.name, student.student_id, student.sgpa])
+    write_to_csv(csv_data)
     return jsonify(students=students)
 
 
-@app.route("/download")
-def download_csv():
-    pass
+# @app.route("/download/")
+# def download_csv():
+#     return send_from_directory('data', 'hello.txt')
 
 if __name__ == '__main__':
     # app.run()

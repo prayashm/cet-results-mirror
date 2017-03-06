@@ -101,9 +101,9 @@ html, body {
 }
 .mdl-demo section.section--center {
   /*max-width: 860px;*/
-  margin-left: 10%;
+  /*margin-left: 10%;
   margin-right: 10%;
-  margin-top: 20px;
+  margin-top: 20px;*/
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;

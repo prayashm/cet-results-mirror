@@ -60,6 +60,7 @@ $(document).ready(function () {
 				suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
 			}
 		})
+		
 	var advanced_tab = document.getElementById("advanced")
 	$("#advanced").click(function (e) {
 		$.getJSON("/advanced", function (data) {
@@ -85,11 +86,14 @@ $(document).ready(function () {
 	})
 	$("#view-results").click(function (e) {
 		var postdata = { branch: $('#branch_list').attr("data-val"), batch: $('#batch_list').attr("data-val"), semester: $('#sem_list').attr("data-val") }
+		var downloadFileName = postdata.batch+"-"+postdata.branch+"-"+postdata.semester+".csv"
 		console.log(postdata)
 		$("#download-results").show()
 		$.post("/advanced/results/", postdata, function (response) {
+			// $("#bulkDetailsSection").append('<a href="raw/results.csv" download="'+downloadFileName+'"> Download </a>')
 			details = $("#bulkDetailsSection").find("tbody")
 			details.empty()
+			
 			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Subject</th><th class="mdl-cell--3-col">Credits</th><th class="mdl-cell--3-col">Grade</th>')
 			console.log(response)
 			var ctr = 1
@@ -100,8 +104,10 @@ $(document).ready(function () {
 					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td>" + data.sgpa + "</td></tr>")
 				ctr++;
 			})
+			details.append("<tr class='mdl-color--primary-dark semrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
 		}, 'json')
 	})
+
 	function getDetails(regno) {
 		$.getJSON("/" + regno, function (data) {
 			if (data == null) {
