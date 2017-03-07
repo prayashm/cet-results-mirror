@@ -62,21 +62,31 @@ $(document).ready(function () {
 		})
 		
 	var advanced_tab = document.getElementById("advanced")
+	
 	$("#advanced").click(function (e) {
 		$.getJSON("/advanced", function (data) {
 			if ($('#branch_dropdown li').length == 0) {
 				data.branch.forEach(function (element, index) {
 					$("#branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
+					$(".selected").click(function(e){
+						$("#branch_dropdown").close()
+					})
 				})
 			}
 			if ($('#batch_dropdown li').length == 0) {
 				data.batch.forEach(function (element, index) {
 					$("#batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
+					$(".selected").click(function(e){
+						$('#batch_dropdown').close()
+					})
 				})
 			}
 			if ($('#sem_dropdown li').length == 0) {
 				data.semester.forEach(function (element, index) {
 					$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
+					$(".selected").click(function(e){
+						$('#sem_dropdown').close()
+					})
 				})
 			}
 			getmdlSelect.init(".getmdl-select")
