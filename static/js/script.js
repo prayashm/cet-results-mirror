@@ -60,16 +60,16 @@ $(document).ready(function () {
 				suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
 			}
 		})
-		
+
 	var advanced_tab = document.getElementById("advanced")
-	
+
 	$("#advanced").click(function (e) {
 		$.getJSON("/advanced", function (data) {
 			if ($('#branch_dropdown li').length == 0) {
 				data.branch.forEach(function (element, index) {
 					$("#branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
 					$(".selected").click(function(e){
-						$("#branch_dropdown").close()
+						$(".mdl-layout__header-row").click()
 					})
 				})
 			}
@@ -77,7 +77,7 @@ $(document).ready(function () {
 				data.batch.forEach(function (element, index) {
 					$("#batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
 					$(".selected").click(function(e){
-						$('#batch_dropdown').close()
+						$(".mdl-layout__header-row").click()
 					})
 				})
 			}
@@ -85,7 +85,7 @@ $(document).ready(function () {
 				data.semester.forEach(function (element, index) {
 					$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
 					$(".selected").click(function(e){
-						$('#sem_dropdown').close()
+						$(".mdl-layout__header-row").click()
 					})
 				})
 			}
@@ -103,7 +103,7 @@ $(document).ready(function () {
 			// $("#bulkDetailsSection").append('<a href="raw/results.csv" download="'+downloadFileName+'"> Download </a>')
 			details = $("#bulkDetailsSection").find("tbody")
 			details.empty()
-			
+
 			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Name</th><th class="mdl-cell--3-col">Roll</th><th class="mdl-cell--3-col">SGPA</th>')
 			console.log(response)
 			var ctr = 1
@@ -188,7 +188,7 @@ $(document).ready(function () {
 					console.log(button_text)
 				})
 			})
-			
+
 
 		})
 	}

@@ -6,7 +6,7 @@ import csv
 
 
 def write_to_csv(data):
-    with open("../data/results.csv", "w") as csvFile:
+    with open("./data/results.csv", "w") as csvFile:
         writer = csv.writer(csvFile, delimiter=',')
         for row in data:
             writer.writerow(row)
@@ -23,7 +23,7 @@ def root():
 # Serve the Raw Files Directly
 @app.route("/raw/<path:path>")
 def send_raw(path):
-    return send_from_directory('../data', path)
+    return send_from_directory('./data', path)
 
 
 @app.route("/<int:student_id>")
