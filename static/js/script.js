@@ -82,6 +82,11 @@ $(document).ready(function () {
 				})
 			}
 			if ($('#sem_dropdown li').length == 0) {
+				// display cgpa
+				$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="0"> CGPA </li>')
+				$(".selected").click(function(e){
+					$(".mdl-layout__header-row").click()
+				})
 				data.semester.forEach(function (element, index) {
 					$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
 					$(".selected").click(function(e){
