@@ -415,3 +415,9 @@ i#avatar {
     margin-left: 10%;
   }
 }
+
+.mark-entry{
+  width: 8vw;
+  text-align: center;
+  font-weight: bold;
+}

@@ -60,7 +60,7 @@ $(document).ready(function () {
 				suggestion: Handlebars.compile('<div>{{value}} - {{name}} - {{branch}} [{{batch}}]</div>')
 			}
 		})
-
+	// beginning of advanced
 	var advanced_tab = document.getElementById("advanced")
 
 	$("#advanced").click(function (e) {
@@ -82,8 +82,7 @@ $(document).ready(function () {
 				})
 			}
 			if ($('#sem_dropdown li').length == 0) {
-				// display cgpa
-				$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="0"> CGPA </li>')
+				$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="0">CGPA</li>')
 				$(".selected").click(function(e){
 					$(".mdl-layout__header-row").click()
 				})
@@ -99,7 +98,41 @@ $(document).ready(function () {
 			console.log(data)
 		})
 	})
-	$("#view-results").click(function (e) {
+	$("#view-results").click(function (e) {$("#advanced").click(function (e) {
+		$.getJSON("/advanced", function (data) {
+			if ($('#branch_dropdown li').length == 0) {
+				data.branch.forEach(function (element, index) {
+					$("#branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#batch_dropdown li').length == 0) {
+				data.batch.forEach(function (element, index) {
+					$("#batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#sem_dropdown li').length == 0) {
+				$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="0">CGPA</li>')
+				$(".selected").click(function(e){
+					$(".mdl-layout__header-row").click()
+				})
+				data.semester.forEach(function (element, index) {
+					$("#sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			getmdlSelect.init(".getmdl-select")
+			componentHandler.upgradeDom()
+			console.log(data)
+		})
+	})
 		var postdata = { branch: $('#branch_list').attr("data-val"), batch: $('#batch_list').attr("data-val"), semester: $('#sem_list').attr("data-val") }
 		var downloadFileName = postdata.batch+"-"+postdata.branch+"-"+postdata.semester+".csv"
 		console.log(postdata)
@@ -124,6 +157,96 @@ $(document).ready(function () {
 			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
 		}, 'json')
 	})
+	// end of advanced
+
+	// beginning of internal
+	$("#internal").click(function (e) {
+		$.getJSON("/internal", function (data) {
+			if ($('#i_branch_dropdown li').length == 0) {
+				data.branch.forEach(function (element, index) {
+					$("#i_branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#i_batch_dropdown li').length == 0) {
+				data.batch.forEach(function (element, index) {
+					$("#i_batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#i_sem_dropdown li').length == 0) {
+				data.semester.forEach(function (element, index) {
+					$("#i_sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			getmdlSelect.init(".getmdl-select")
+			componentHandler.upgradeDom()
+			console.log(data)
+		})
+	})
+	$("#generate_internal_form").click(function (e) {$("#internal").click(function (e) {
+		$.getJSON("/internal", function (data) {
+			if ($('#i_branch_dropdown li').length == 0) {
+				data.branch.forEach(function (element, index) {
+					$("#i_branch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.code + '">' + element.branch + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#i_batch_dropdown li').length == 0) {
+				data.batch.forEach(function (element, index) {
+					$("#i_batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			if ($('#i_sem_dropdown li').length == 0) {
+				data.semester.forEach(function (element, index) {
+					$("#i_sem_dropdown").append('<li style="text-align: center;" class="mdl-menu__item selected" data-val="' + element.semester.slice(-1) + '">' + element.semester + '</li>')
+					$(".selected").click(function(e){
+						$(".mdl-layout__header-row").click()
+					})
+				})
+			}
+			getmdlSelect.init(".getmdl-select")
+			componentHandler.upgradeDom()
+			console.log(data)
+		})
+	})
+		var postdata = { branch: $('#i_branch_list').attr("data-val"), batch: $('#i_batch_list').attr("data-val"), semester: $('#i_sem_list').attr("data-val") }
+		var downloadFileName = postdata.batch+"-"+postdata.branch+"-"+postdata.semester+".csv"
+		console.log(postdata)
+		$("#download-results").show()
+		$.post("/internal/display/", postdata, function (response) {
+			// $("#bulkDetailsSection").append('<a href="raw/results.csv" download="'+downloadFileName+'"> Download </a>')
+			details = $("#i_bulkDetailsSection").find("tbody")
+			details.empty()
+
+			details.append('<th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Name</th><th class="mdl-cell--3-col">Roll</th><th class="mdl-cell--3-col">Marks</th>')
+			console.log(response)
+			var ctr = 1
+			response.students.forEach(function (data, index) {
+				if (ctr % 2)
+					details.append("<tr><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"'type='text'/></td></tr>")
+				else
+					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"' type='text'/></td></tr>")
+				ctr++;
+			})
+			for(var  i = 0; i < 10; i++)
+				details.append("<tr><td> </td></tr>")
+			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
+		}, 'json')
+	})
+	// end of internal
 
 	function getDetails(regno) {
 		$.getJSON("/" + regno, function (data) {
