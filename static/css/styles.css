@@ -244,15 +244,29 @@ html, body {
 }*/
 #userInput {
   border-bottom: none;
+  font-size: 8vw;
 }
 #inputBox .mdl-textfield__label {
   text-align: center;
   font-size: 45px;
   padding-top: 4%;
 }
+@media screen and (min-width: 400px) {
+  #subjectInput {
+    width: 80%;
+    border-bottom: none;
+    font-size: 2.4vw;
+    text-align: center;
+  }
+}
 
-#userInput {
-  font-size: 8vw;
+@media screen and (max-width: 400px) {
+  #subjectInput {
+    width: 80%;
+    border-bottom: none;
+    font-size: 6vw;
+    text-align: center;
+  }
 }
 
 div#inputBox {

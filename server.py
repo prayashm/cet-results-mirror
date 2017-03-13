@@ -1,7 +1,6 @@
 import models
 import constants
 from flask import Flask, jsonify, send_from_directory, request
-import sys
 import csv
 
 
@@ -32,7 +31,7 @@ def getStudentByRegNo(student_id):
     if len(str(student_id)) != 10:
         students = []
         constants.db.connect()
-        records = models.Student.select().where(models.Student.student_id.startswith(student_id))
+        records = models.Student.select().where(models.Student.student_id.startswith(student_id)).limit(15)
 
         for student in records:
             branch = models.Branch.get(models.Branch.code == student.branch_id)
@@ -82,7 +81,7 @@ def getStudentByRegNo(student_id):
 def getStudentByName(partial_name):
     constants.db.connect()
     students = []
-    records = models.Student.select().where(models.Student.name.startswith(partial_name.upper()))
+    records = models.Student.select().where(models.Student.name.contains(partial_name.upper())).limit(15)
     for student in records:
         students.append({'name': student.name.title(), 'regno': student.student_id, 'batch': student.batch,
                          'branch': student.branch_id})
@@ -186,37 +185,32 @@ def fill_dropdown_internal():
     return jsonify(branch=branch_list, batch=year_list, semester=semester_list)
 
 
+@app.route("/internal/subjects/", methods=['GET', 'POST'])
+def filter_subject():
+    partial_subject_name = str(request.form['subject']).translate(None, '!=%1234567890')
+    subjects = models.Subject.select().where(models.Subject.name.contains(partial_subject_name.upper())).limit(10)
+    subject_list = []
+    for subject in subjects:
+        subject_list.append({"name": subject.name, "code": subject.code})
+    return jsonify(subject_list=subject_list)
+
+
 @app.route("/internal/display/", methods=['GET', 'POST'])
 def generate_internal_form():
     constants.db.connect()
     branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
     batch = str(request.form['batch']).translate(None, '!=%,;')
     semester_query = str(request.form['semester']).translate(None, '!=%,;')
-    if semester_query == "0":
-        data = models.BulkQuery.raw(
-            "SELECT * FROM student WHERE branch_id = '" + branch_code +
-            "' and batch = " + batch + " ORDER BY `cgpa` DESC").execute()
-        students = []
-        csv_data = []
-        for student in data:
-            students.append({"name": student.name, "student_id": student.student_id, "sgpa": student.cgpa})
-            csv_data.append([student.name, student.student_id, student.cgpa])
-        write_to_csv(csv_data)
-        return jsonify(students=students)
-    else:
-        semester_code = batch + "-" + str(request.form['semester']).translate(None, '!=%,;')
-        data = models.BulkQuery.raw('SELECT t1.sgpa, t2.student_id,t2.name FROM `exam` as t1 RIGHT JOIN '
-                                    '(SELECT * FROM `student` )as t2 ON t1.student_id = t2.student_id '
-                                    'WHERE t2.branch_id ="' + branch_code + '" AND t2.batch =' + batch +
-                                    ' AND t1.semester_id ="' + semester_code +
-                                    '" ORDER BY `t1`.`sgpa` DESC').execute()
-        students = []
-        csv_data = []
-        for student in data:
-            students.append({"name": student.name, "student_id": student.student_id, "sgpa": student.sgpa})
-            csv_data.append([student.name, student.student_id, student.sgpa])
-        write_to_csv(csv_data)
-        return jsonify(students=students)
+    semester_code = batch + "-" + semester_query
+    data = models.BulkQuery.raw(
+        'SELECT name, student_id from student where branch_id = "' + branch_code + '" and batch = ' + batch +
+        ' order by student_id asc').execute()
+    students = []
+    csv_data = []
+    for student in data:
+        students.append({"name": student.name, "student_id": student.student_id})
+    write_to_csv(csv_data)
+    return jsonify(students=students)
 
 
 @app.route("/test")

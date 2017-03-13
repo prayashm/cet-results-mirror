@@ -207,6 +207,7 @@
             <ul id="branch_dropdown" for="branch_selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
             </ul>
         </div>-->
+         <input class="mdl-textfield__input" type="text" id="subjectInput" autocomplete="off" spellcheck="false" dir="auto" style="height: 35px;position: relative;vertical-align: top;margin-left: 10%;" placeholder="Enter Subject Name">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
           <input class="mdl-textfield__input" type="text" id="i_branch_list" readonly tabIndex="-1">
           <label for="i_branch_list">
@@ -233,6 +234,18 @@
             </label>
           <label for="i_sem_list" class="mdl-textfield__label" style="text-align: center;color:rgba(0, 0, 0, 0.7)">Select Semester</label>
           <ul id="i_sem_dropdown" for="i_sem_list" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+          </ul>
+        </div>
+        <div id="get_internal_id" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+          style="text-align: center;width: 80%;margin-left: 10%;">
+          <input class="mdl-textfield__input" type="text" id="internal_1_2" readonly tabIndex="-1">
+          <label for="internal_1_2">
+                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            </label>
+          <label for="internal_1_2" class="mdl-textfield__label" style="text-align: center;color:rgba(0, 0, 0, 0.7)">Select Internal</label>
+          <ul id="batch_dropdown" for="internal_1_2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+            <li style="text-align: center;"  class="mdl-menu__item selected" data-val="1">First</li>
+            <li style="text-align: center;"  class="mdl-menu__item selected" data-val="2">Second</li>
           </ul>
         </div>
         <br>

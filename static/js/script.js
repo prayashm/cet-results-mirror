@@ -18,6 +18,7 @@ $(document).ready(function () {
 		detailsSection.fadeOut(500)
 	}
 
+
 	var userInput = $(".typeahead")
 	input = document.getElementById("userInput")
 
@@ -236,16 +237,37 @@ $(document).ready(function () {
 			var ctr = 1
 			response.students.forEach(function (data, index) {
 				if (ctr % 2)
-					details.append("<tr><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"'type='text'/></td></tr>")
+					details.append("<tr><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"'type='number'/></td></tr>")
 				else
-					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"' type='text'/></td></tr>")
+					details.append("<tr style='background-color: rgba(30, 115, 115, 0.19);'><td>" + ctr + "</td><td class='mdl-data-table__cell--non-numeric'>" + data.name + "</td><td>" + data.student_id + "</td><td style='text-align: center;'><input class='mark-entry' id='"+ data.student_id +"' type='number'/></td></tr>")
 				ctr++;
 			})
+				$(".mark-entry").keyup(function(e){
+					var z = e.currentTarget.id;
+					var score = $("#"+z).val()
+					if(0 <= score && score < 6){
+						$("#"+z).css({ 'color': 'red'});
+					}
+					else if(score >= 6 && score < 11){
+						$("#"+z).css({ 'color': 'blue'});
+					}
+					else{
+						$("#"+z).css({ 'color': 'green'});
+					}
+				})
 			for(var  i = 0; i < 10; i++)
 				details.append("<tr><td> </td></tr>")
 			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
 		}, 'json')
 	})
+
+	$("#subjectInput").keyup(function(e){
+		var partial_subs = { subject : $("#subjectInput").val()}
+		$.post("/internal/subjects/", partial_subs, function (response) {
+			console.log(response)
+		})
+	})
+
 	// end of internal
 
 	function getDetails(regno) {
