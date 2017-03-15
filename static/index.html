@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Mirror of BPUT Results for CET Bhubaneswar">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>CET Results Mirror</title>
   <!--Dropdown selector-->
   <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
@@ -207,7 +208,7 @@
             <ul id="branch_dropdown" for="branch_selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
             </ul>
         </div>-->
-         <input class="mdl-textfield__input" type="text" id="subjectInput" autocomplete="off" spellcheck="false" dir="auto" style="height: 35px;position: relative;vertical-align: top;margin-left: 10%;" placeholder="Enter Subject Name">
+         <input class="mdl-textfield__input" type="text" id="subjectInput" autocomplete="on" spellcheck="false" dir="auto" style="height: 35px;position: relative;vertical-align: top;margin-left: 10%;" placeholder="Enter Subject Name">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="text-align: center;width: 80%;margin-left: 10%;">
           <input class="mdl-textfield__input" type="text" id="i_branch_list" readonly tabIndex="-1">
           <label for="i_branch_list">
@@ -243,7 +244,7 @@
                 <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
             </label>
           <label for="internal_1_2" class="mdl-textfield__label" style="text-align: center;color:rgba(0, 0, 0, 0.7)">Select Internal</label>
-          <ul id="batch_dropdown" for="internal_1_2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+          <ul id="internal_dropdown" for="internal_1_2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
             <li style="text-align: center;"  class="mdl-menu__item selected" data-val="1">First</li>
             <li style="text-align: center;"  class="mdl-menu__item selected" data-val="2">Second</li>
           </ul>
@@ -391,10 +392,10 @@
   <script src="js/material.min.js"></script>
   <script src="js/handlebars.js"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="js/typeahead.bundle.js"></script>
   <script src="js/script.js"></script>
-
+  
   <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
 </body>
 

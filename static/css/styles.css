@@ -435,3 +435,7 @@ i#avatar {
   text-align: center;
   font-weight: bold;
 }
+.twitter-typeahead{
+  margin-left : 10%;
+  width: 80%;
+}

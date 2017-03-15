@@ -18,10 +18,7 @@ $(document).ready(function () {
 		detailsSection.fadeOut(500)
 	}
 
-
-	var userInput = $(".typeahead")
-	input = document.getElementById("userInput")
-
+	var userInput = $("#userInput")
 	var students = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -73,7 +70,7 @@ $(document).ready(function () {
 						$(".mdl-layout__header-row").click()
 					})
 				})
-			}
+			}Array
 			if ($('#batch_dropdown li').length == 0) {
 				data.batch.forEach(function (element, index) {
 					$("#batch_dropdown").append('<li style="text-align: center;"  class="mdl-menu__item selected" data-val="' + element.year + '">' + element.year + '</li>')
@@ -261,12 +258,51 @@ $(document).ready(function () {
 		}, 'json')
 	})
 
-	$("#subjectInput").keyup(function(e){
-		var partial_subs = { subject : $("#subjectInput").val()}
-		$.post("/internal/subjects/", partial_subs, function (response) {
-			console.log(response)
-		})
+	var subject_list = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: '/internal/subjects/',
+			prepare: function (query, settings) {
+				settings.type = "POST";
+				settings.contentType = "application/json;";
+        		settings.dataType = 'json',
+				settings.data = JSON.stringify({ subject : query});
+				return settings;
+			},
+			transform: function(response) {
+				data = response.subject_list
+				final_sub_list = []
+				for(var i = 0; i < data.length; i++){
+					final_sub_list.push({name : data[i].name, code: data[i].code})
+				}
+				return final_sub_list
+			}
+		}
 	})
+
+	$("#subjectInput").typeahead({
+		hint: false,
+		highlight: true
+	},
+	{
+		name: 'subject_list',
+		limit: 100,
+		display: 'name',
+		source: subject_list.ttAdapter(),
+		templates: {
+			notFound: Handlebars.compile('<div class="notFound">No subject found with name: <strong>{{query}}</strong></div>'),
+			suggestion: Handlebars.compile('<div>{{name}} - {{code}}</div>')
+		}
+	})
+	
+	// $("#subjectInput").keyup(function(e){
+	// 	var partial_subs = { subject : $("#subjectInput").val()}
+	// 	// $.post("/internal/subjects/", partial_subs, function (response) {
+	// 	// 	console.log(response)
+	// 	// 	raw_subject_data = response
+	// 	// })
+	// })
 
 	// end of internal
 
