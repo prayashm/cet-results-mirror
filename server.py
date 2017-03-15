@@ -136,9 +136,9 @@ def fill_dropdown_advanced():
 @app.route("/advanced/results/", methods=['GET', 'POST'])
 def show_bulk_result():
     constants.db.connect()
-    branch_code = str(request.json['branch']).translate(None, '!=%1234567890')
-    batch = str(request.json['batch']).translate(None, '!=%,;')
-    semester_query = str(request.json['semester']).translate(None, '!=%,;')
+    branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
+    batch = str(request.form['batch']).translate(None, '!=%,;')
+    semester_query = str(request.form['semester']).translate(None, '!=%,;')
     if semester_query == "0":
         data = models.BulkQuery.raw(
             "SELECT * FROM student WHERE branch_id = '" + branch_code +
@@ -151,7 +151,7 @@ def show_bulk_result():
         write_to_csv(csv_data)
         return jsonify(students=students)
     else:
-        semester_code = batch + "-" + str(request.json['semester']).translate(None, '!=%,;')
+        semester_code = batch + "-" + str(request.form['semester']).translate(None, '!=%,;')
         data = models.BulkQuery.raw('SELECT t1.sgpa, t2.student_id,t2.name FROM `exam` as t1 RIGHT JOIN '
                                     '(SELECT * FROM `student` )as t2 ON t1.student_id = t2.student_id '
                                     'WHERE t2.branch_id ="' + branch_code + '" AND t2.batch =' + batch +
@@ -199,9 +199,9 @@ def filter_subject():
 @app.route("/internal/display/", methods=['GET', 'POST'])
 def generate_internal_form():
     constants.db.connect()
-    branch_code = str(request.json['branch']).translate(None, '!=%1234567890')
-    batch = str(request.json['batch']).translate(None, '!=%,;')
-    semester_query = str(request.json['semester']).translate(None, '!=%,;')
+    branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
+    batch = str(request.form['batch']).translate(None, '!=%,;')
+    semester_query = str(request.form['semester']).translate(None, '!=%,;')
     semester_code = batch + "-" + semester_query
     data = models.BulkQuery.raw(
         'SELECT name, student_id from student where branch_id = "' + branch_code + '" and batch = ' + batch +
