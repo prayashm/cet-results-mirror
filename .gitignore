@@ -1,3 +1,8 @@
 venv/*
 *.pyc
 reports/
+bin/
+include/
+lib/
+local/
+
