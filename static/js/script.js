@@ -254,7 +254,13 @@ $(document).ready(function () {
 				})
 			for(var  i = 0; i < 10; i++)
 				details.append("<tr><td> </td></tr>")
+			details.append("<tr><td colspan='100%'><button class='saverow'>Save</button></td></tr>")
 			details.append("<tr class='downloadrow'><td colspan='100%' style='text-align:center;'><a style='color:#ffffff' href='raw/results.csv' download='" + downloadFileName + "'> Download </a></td></tr>")
+
+			$(".saverow").click(function(e){
+				console.log("hi")
+			})
+
 		}, 'json')
 	})
 
@@ -288,7 +294,7 @@ $(document).ready(function () {
 	{
 		name: 'subject_list',
 		limit: 100,
-		display: 'name',
+		display: 'code',
 		source: subject_list.ttAdapter(),
 		templates: {
 			notFound: Handlebars.compile('<div class="notFound">No subject found with name: <strong>{{query}}</strong></div>'),
