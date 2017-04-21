@@ -224,6 +224,4 @@ def test():
 #     return send_from_directory('data', 'hello.txt')
 
 if __name__ == '__main__':
-    # app.run()
-    # debug only, 0.0.0.0
     app.run(host='0.0.0.0')
