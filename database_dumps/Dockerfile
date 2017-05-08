@@ -1,0 +1,4 @@
+FROM mysql
+
+WORKDIR /
+

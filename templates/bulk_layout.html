@@ -1,0 +1,113 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Mirror of BPUT Results for CET Bhubaneswar">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--change to depolyment ip-->
+  <base href="http://0.0.0.0:5000/"> 
+  <!--change to depolyment ip-->
+  <title>CET Results Mirror</title>
+  <!--Dropdown selector-->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+  <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.indigo-pink.min.css">
+  <!-- Material Design icon font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/material.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+      </div>
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        <h3>CET Results Mirror</h3>
+      </div>
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+      </div>
+
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+        <a href="#overview" class="mdl-layout__tab is-active">Home</a>
+        <a href="/#advanced" id="advanced" class="mdl-layout__tab">Advanced</a>
+        <a href="/#internal" id="internal" class="mdl-layout__tab">Internals</a>
+        <a href="/#about" class="mdl-layout__tab">About</a>
+        <a target="new" href="https://github.com/prayashm/cet-results-mirror" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent"
+          id="add">
+          <i class="material-icons" role="presentation">library_books</i>
+          <span class="visuallyhidden">github</span>
+        </a>
+      </div>
+
+    </header>
+    <div class="mdl-layout__tab-panel" id="advanced">
+        <section id="bulkDetailsSection" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="margin-bottom:48px">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__supporting-text mdl-grid">
+              <!-- <h4 class="mdl-cell mdl-cell--12-col">Details</h4> -->
+              <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack" data-upgraded=",MaterialDataTable" style="width: 98%">
+                <thead>
+                </thead>
+                <tbody>
+                  {% block bulk_student_result %} {% endblock %}
+                </tbody>
+              </table>
+
+            </div>
+            <!--
+            <div class="mdl-card__actions">
+              <a href="#" class="mdl-button">Download all</a>
+              <a href="#" class="mdl-button">Report error</a>
+            </div> -->
+          </div>
+        </section>
+        <!--<button id="download-results" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width: 80%;margin-left: 10%;">
+          <a href="raw/hello.txt" download="hello.txt"> Download </a>
+        </button>-->
+      </div>
+      
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer--bottom-section">
+        <div class="mdl-logo">
+          CET Results Mirror
+          
+        </div>
+        <!--
+        <ul class="mdl-mega-footer--link-list">
+          <li><a href="http://google.com">Don't Panic</a></li>
+        </ul> -->
+      </div>
+    </footer>
+  </div>
+  <script type="text/javascript" src="js/tablesaw.stackonly.js"></script>
+  <script src="js/material.min.js"></script>
+  <script src="js/handlebars.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/typeahead.bundle.js"></script>
+  <script src="js/script.js"></script>
+
+  <script defer="" src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+
+
+</body>
+</html>

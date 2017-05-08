@@ -1,6 +1,6 @@
 import models
 import constants
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory, request, render_template
 
 import csv
 
@@ -113,7 +113,7 @@ def change_message(student_id):
         return jsonify(visible_message="Make your results private")
 
 
-@app.route("/advanced")
+@app.route("/advanced/")
 def fill_dropdown_advanced():
     constants.db.connect()
     branch_list = []
@@ -129,16 +129,21 @@ def fill_dropdown_advanced():
     """
     for semester in range(1, 9):
         semester_list.append({"semester": "Semester - " + str(semester)})
-
     return jsonify(branch=branch_list, batch=year_list, semester=semester_list)
 
 
-@app.route("/advanced/results/", methods=['GET', 'POST'])
-def show_bulk_result():
+@app.route("/advanced/results/<batch_id>/<branch_id>/<sem_id>", methods=['GET', 'POST'])
+def show_bulk_result(batch_id, branch_id, sem_id):
     constants.db.connect()
-    branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
-    batch = str(request.form['batch']).translate(None, '!=%,;')
-    semester_query = str(request.form['semester']).translate(None, '!=%,;')
+    if batch_id is None or branch_id is None or sem_id is None:
+        branch_code = str(request.form['branch']).translate(None, '!=%1234567890')
+        batch = str(request.form['batch']).translate(None, '!=%,;')
+        semester_query = str(request.form['semester']).translate(None, '!=%,;')
+    else:
+        branch_code = str(branch_id).translate(None, '!=%1234567890')
+        batch = str(batch_id).translate(None, '!=%,;')
+        semester_query = str(sem_id).translate(None, '!=%,;')
+
     if semester_query == "0":
         data = models.BulkQuery.raw(
             "SELECT * FROM student WHERE branch_id = '" + branch_code +
@@ -149,9 +154,9 @@ def show_bulk_result():
             students.append({"name": student.name, "student_id": student.student_id, "sgpa": student.cgpa})
             csv_data.append([student.name, student.student_id, student.cgpa])
         write_to_csv(csv_data)
-        return jsonify(students=students)
+        return render_template("bulk_results.html", list_size=len(students), student=students, type="CGPA")
     else:
-        semester_code = batch + "-" + str(request.form['semester']).translate(None, '!=%,;')
+        semester_code = batch + "-" + semester_query
         data = models.BulkQuery.raw('SELECT t1.sgpa, t2.student_id,t2.name FROM `exam` as t1 RIGHT JOIN '
                                     '(SELECT * FROM `student` )as t2 ON t1.student_id = t2.student_id '
                                     'WHERE t2.branch_id ="' + branch_code + '" AND t2.batch =' + batch +
@@ -163,7 +168,7 @@ def show_bulk_result():
             students.append({"name": student.name, "student_id": student.student_id, "sgpa": student.sgpa})
             csv_data.append([student.name, student.student_id, student.sgpa])
         write_to_csv(csv_data)
-        return jsonify(students=students)
+        return render_template("bulk_results.html", list_size=len(students), student=students, type="SGPA")
 
 
 @app.route("/internal")

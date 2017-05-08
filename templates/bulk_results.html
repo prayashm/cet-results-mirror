@@ -1,0 +1,15 @@
+<!doctype html>
+{% extends "bulk_layout.html" %}
+{% block bulk_student_result %}
+    <th class="mdl-cell--3-col">#</th><th class="mdl-data-table__cell--non-numeric mdl-cell--6-col">Name</th><th class="mdl-cell--3-col">Roll</th><th class="mdl-cell--3-col">{{type}}</th>
+    {% for i in range(list_size) %}
+    {% if i % 2 %}
+        <tr> <td> {{ i + 1 }} </td> <td class='mdl-data-table__cell--non-numeric'> {{ student[i].name }} </td> <td> {{ student[i].student_id }} </td> <td> {{ student[i].sgpa }}  </td> </tr>
+    {% else %}
+        <tr style='background-color: rgba(30, 115, 115, 0.19);'> <td> {{ i + 1 }} </td> <td class='mdl-data-table__cell--non-numeric'> {{ student[i].name }} </td> <td> {{ student[i].student_id }} </td> <td> {{ student[i].sgpa }}  </td> </tr>
+    {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
+
