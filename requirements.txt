@@ -8,4 +8,4 @@ peewee==2.7.4
 PyMySQL==0.6.7
 pyparsing==2.2.0
 six==1.10.0
-Werkzeug==0.15.3
+Werkzeug==2.2.3
