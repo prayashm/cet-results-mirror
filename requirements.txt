@@ -1,5 +1,5 @@
 appdirs==1.4.3
-Flask==1.0
+Flask==2.3.2
 itsdangerous==0.24
 Jinja2==2.11.3
 MarkupSafe==0.23
